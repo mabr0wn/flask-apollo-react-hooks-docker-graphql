@@ -3,7 +3,21 @@ import os
 from flask import Flask
 
 def create_app(test_config=None):
-    # create and consfigure the app
+    """
+    :create_app Application factory function which creates another object
+    i.e. blog, username, and comment.
+    :param test_config: can be passed to the factory, will use this in testing.
+    this will seperate itself from any deployment values you have in 'config.py'
+    :return Flask app and it will simple teardown and initialize the db.
+    ===========================================================================
+    :instance_relative_config tells the app that configuration files are relative to
+    the instance folder. This is located outside the flaskr package and can hold local
+    data that shouldn't be committed to version control, such as configuration secrets
+    and database files.
+    :from_mapping() set defaults that the app will use.
+    :from_pyfile() overrides the values in the config from a Python file, an example
+    would be deploying would set the SECRET_KEY to a real one.
+    """
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
