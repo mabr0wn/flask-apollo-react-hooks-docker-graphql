@@ -7,7 +7,7 @@ __pycahce__/
 
 instance/
 
-.pytest_cahce/
+.pytest_cache/
 .coverage
 htmlcov/
 
