@@ -1,0 +1,14 @@
+venv/
+
+*.pyc
+__pycahce__/
+
+instance/
+
+.pytest_cahce/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
