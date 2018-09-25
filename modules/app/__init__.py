@@ -13,7 +13,7 @@ def create_app(test_config=None):
     :return Flask app and it will simple teardown and initialize the db.
     ===========================================================================
     :instance_relative_config tells the app that configuration files are relative to
-    the instance folder. This is located outside the flaskr package and can hold local
+    the instance folder. This is located outside the app package and can hold local
     data that shouldn't be committed to version control, such as configuration secrets
     and database files.
     :from_mapping() set defaults that the app will use.
