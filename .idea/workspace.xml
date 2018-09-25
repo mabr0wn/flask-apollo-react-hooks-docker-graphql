@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="910bb1f0-602a-4835-91d0-f52d1114de17" name="Default" comment="" />
+    <list default="true" id="910bb1f0-602a-4835-91d0-f52d1114de17" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flaskr/__init__.py" afterPath="$PROJECT_DIR$/flaskr/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flaskr/db.py" afterPath="$PROJECT_DIR$/flaskr/db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.py" afterPath="$PROJECT_DIR$/index.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/app/__init__.py" afterPath="$PROJECT_DIR$/modules/app/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/app/db.py" afterPath="$PROJECT_DIR$/modules/app/db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/app/schema.sql" afterPath="$PROJECT_DIR$/modules/app/schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +40,7 @@
         <option value="$PROJECT_DIR$/flaskr/__init__.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/index.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -222,7 +233,7 @@
           <caret line="29" column="6" lean-forward="false" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1537905670044" expanded="true" signature="625:797" ph="..." />
+            <marker date="1537915613196" expanded="true" signature="625:797" ph="..." />
           </folding>
         </state>
       </provider>
@@ -265,7 +276,7 @@
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1537905670044" expanded="true" signature="625:797" ph="..." />
+            <marker date="1537915613196" expanded="true" signature="625:797" ph="..." />
           </folding>
         </state>
       </provider>
@@ -292,7 +303,7 @@
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1537905670044" expanded="true" signature="625:797" ph="..." />
+            <marker date="1537915613196" expanded="true" signature="625:797" ph="..." />
           </folding>
         </state>
       </provider>
@@ -311,7 +322,7 @@
           <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1537905670044" expanded="true" signature="625:797" ph="..." />
+            <marker date="1537915613196" expanded="true" signature="625:797" ph="..." />
           </folding>
         </state>
       </provider>
@@ -379,7 +390,7 @@
           <caret line="29" column="6" lean-forward="false" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1537905670044" expanded="true" signature="625:797" ph="..." />
+            <marker date="1537915613196" expanded="true" signature="625:797" ph="..." />
           </folding>
         </state>
       </provider>
@@ -388,6 +399,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
