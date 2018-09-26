@@ -11,4 +11,17 @@ Below is the directory structure, you can follow this structure or create your o
 
 > **NOTE**: this is just an example of how to start your project structure, keep in mind this will change overtime.  Once this project is complete I will add the final stack image below and remove this note.
 
-![alt text](https://i.imgur.com/PYdKb6A.png)
+![alt text](https://i.imgur.com/Zr3ufcq.png)
+
+- **instance** - This is located outside the app package and can hold local
+    data that shouldn't be committed to version control, such as configuration secrets
+    and database files.
+- **app.py**: This is the entry point for the Flask web-server
+- **venv**: This is to setup your virtual environment in Python, it seperates itself from the OS build.
+- **requirements.txt**: Will install any Python Packages you will need for your app to run properly.
+- **Dockerfile**: Dockerfile to build the docker containers.
+- **docker-compose.yml & docker-compose.prod.yml**: Configuration for both development & production.
+- **modules**: The directory that will contain all the modules, i.e. app, logger, etc.
+- **app**: The main directory for the web server, where we build Flask.
+- **dist**: Where React and other static files will serve.
+- **logger**: Log errors and info into `output.log`.
