@@ -99,7 +99,7 @@ def static_proxy(path):
 if __name__ == "__main__":
     LOG.info('running environment: {}'.format(os.environ.get('ENV')))
     app.config['DEBUG'] = os.environ.get('ENV') == 'development'
-    app.run(host='127.0.0.1', port=int(PORT))
+    app.run(host='0.0.0.0', port=int(PORT))
 ```    
 
 `ROOT_PATH` actually adds "modules" directory in sys, that way we can directly import every modules from that direcotry.  For **PORT** and **ENV** we will define those in our `docker-compose.yml` file. We have define 3 default routes, one for `index.html`, another for **error handling**, and one more to serve all static files in `dist` directory.
