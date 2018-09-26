@@ -104,3 +104,88 @@ if __name__ == "__main__":
 
 `ROOT_PATH` actually adds "modules" directory in sys, that way we can directly import every modules from that direcotry.  For **PORT** and **ENV** we will define those in our `docker-compose.yml` file. We have define 3 default routes, one for `index.html`, another for **error handling**, and one more to serve all static files in `dist` directory.
 
+If you want to use logger for debugging, info, and warnings below is a basic setup of logger to and `output.log` file.
+
+ - Add to `modules/logger/__init__.py`
+ 
+`from . logger import *`
+
+```python
+import os
+import logging
+
+
+def get_root_logger(logger_name, filename=None):
+    logger = logging.getLogger(logger_name)
+    debug = os.environ.get('ENV', 'development') == 'development'
+    logger.setLevel(logging.DEBUG if debug else logging.INFO)
+
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    ch = logging.StreamHandler()
+    ch.setFormatter(formatter)
+    logger.addHandler(ch)
+
+    if filename:
+        fh = logging.FileHandler(filename)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
+    return logger
+
+def get_child_logger(root_logger, name):
+    return logging.getLogger('.'.join([root_logger, name]))
+```
+
+This `logger.py` in the simpliest form will format a nice string format of your log message to your `output.log` file your will create in your root directory.
+
+> **NOTE**: Please make sure to add all required packages to you `requirements.txt`
+
+```
+Flask
+requests
+raven[flask]
+sentry-sdk==0.3.5
+```
+
+#### Setup Dockerfile:
+
+```
+FROM python:3.5
+ADD . /app
+WORKDIR /app
+EXPOSE 4000
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python","app.py"]
+```
+
+#### Setup docker-compose.yml
+
+```
+services:
+ web:
+  build: .
+  ports:
+   - "4000:4000"
+  volumes:
+   - .:/app
+  environment:
+   - ENV=development
+   - PORT=4000
+   - DB=mongodb://mongodb:27017/dev
+
+networks:
+ default:
+  name: web
+```
+
+After that create some html files in your dist directory i.e. *react*.  Now your have a bare minimum application with flask server and docker deployment.  Run the following command below:
+
+` $ docker-compose up --build`
+
+Your output should look something like this:
+
+![alt text](https://i.imgur.com/dlJwcc7.png)
+
+Access [localhost](http://localhost:4000/) in your browser, and you will see the `index.html` loaded.
