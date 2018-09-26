@@ -1,6 +1,9 @@
 # FullStack: Flask + React + Docker + AWS
 [Flask](http://flask.pocoo.org/) is a very powerful framework. You can build a vast variety of systems from a very basic web application to a large platform using flask. [React](https://reactjs.org) is a very popular, easy to use & very powerful front-end development JavaScript library. [Docker](https://www.docker.com/) is an open platform for developers and system administrators to build, ship, and run distributed applications, whether on laptops, data centre VMs, or the cloud. [AWS](https://aws.amazon.com/) Amazon Web Services (AWS) is a secure [cloud](https://aws.amazon.com/what-is-cloud-computing/) services platform, offering compute power, database storage, content delivery and other functionality to help businesses scale and grow.
-It's good practice to use a IDE that works with your current environment, below I set this project up using [PyCharm](https://www.jetbrains.com/pycharm/), but could easily use [VSCode](https://code.visualstudio.com/).  I chose this since we are using Python's Flask microframework as our backend.  You can choose anything that works for you.
+
+### IDE:
+
+It's good practice to use a IDE that works with your current environment, below I set this project up using [VSCode](https://code.visualstudio.com/).  I chose this since we are using Python's Flask microframework as our backend.  You can choose anything that works for you.
 
 ---
 
@@ -8,7 +11,7 @@ Below is the directory structure, you can follow this structure or create your o
 
 > **NOTE**: this is just an example of how to start your project structure, keep in mind this will change overtime.  Once this project is complete I will add the final stack image below and remove this note.
 
-![alt text](https://i.imgur.com/Zr3ufcq.png)
+![alt text](https://i.imgur.com/UnQbMtu.png)
 
 - **instance** - This is located outside the app package and can hold local
     data that shouldn't be committed to version control, such as configuration secrets
