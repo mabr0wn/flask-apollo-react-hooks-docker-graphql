@@ -9,6 +9,8 @@ ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 os.environ.update({'ROOT_PATH': ROOT_PATH})
 sys.path.append(os.path.join(ROOT_PATH, 'modules'))
 
+PUBLIC_PATH = os.path.join(ROOT_PATH, 'public')
+
 from modules import logger
 from modules.app import create_app
 
@@ -29,17 +31,17 @@ def not_found(error):
 @app.route('/')
 def index():
     """ serve index.html """
-    return send_from_directory('dist', 'index.html')
+    return send_from_directory(PUBLIC_PATH, 'index.html')
 
 @app.route('/<path:path>')
 def static_proxy(path):
     """
     static folder serve
-    :param path: to load all static files in `dist`
-    :return: the directory `dist` with filename i.e. 404.html
+    :param path: to load all static files in `public`
+    :return: the directory `public` with filename i.e. 404.html
     """
     file_name = path.split('/')[-1]
-    dir_name = os.path.join('dist', '/'.join(path.split('/')[:-1]))
+    dir_name = os.path.join('public', '/'.join(path.split('/')[:-1]))
     return send_from_directory(dir_name, file_name)
 
 if __name__ == "__main__":
