@@ -3,7 +3,7 @@
 
 ## IDE Setup
 
-It's good practice to use a IDE that works with your current environment, below I set this project up using [PyCharm](https://www.jetbrains.com/pycharm/), but could easily use [VSCode](https://code.visualstudio.com/).  I choose this since we are using Python's Flask microframework as our backend.  You can choose anything that work's for you.
+It's good practice to use a IDE that works with your current environment, below I set this project up using [PyCharm](https://www.jetbrains.com/pycharm/), but could easily use [VSCode](https://code.visualstudio.com/).  I chose this since we are using Python's Flask microframework as our backend.  You can choose anything that work's for you.
 
 ---
 
