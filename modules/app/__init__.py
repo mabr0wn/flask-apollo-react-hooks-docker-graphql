@@ -4,6 +4,13 @@ import datetime
 
 from flask import Flask
 
+from sentry_sdk import configure_scope
+with configure_scope() as scope:
+    scope.user = {"email": "mattd429@gmail.com"}
+
+from raven.contrib.flask import Sentry
+sentry = Sentry(dsn='https://191dbfc870984eba879f4f2ed9717902@sentry.io/1289031')
+
 def create_app(test_config=None):
     """
     :create_app Application factory function which creates another object
@@ -20,7 +27,9 @@ def create_app(test_config=None):
     :from_pyfile() overrides the values in the config from a Python file, an example
     would be deploying would set the SECRET_KEY to a real one.
     """
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
+    sentry.init_app(app)
+    #app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
