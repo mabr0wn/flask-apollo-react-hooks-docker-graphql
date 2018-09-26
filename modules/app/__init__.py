@@ -27,9 +27,8 @@ def create_app(test_config=None):
     :from_pyfile() overrides the values in the config from a Python file, an example
     would be deploying would set the SECRET_KEY to a real one.
     """
-    app = Flask(__name__)
+    app = Flask(__name__, instance_relative_config=True)
     sentry.init_app(app)
-    #app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
