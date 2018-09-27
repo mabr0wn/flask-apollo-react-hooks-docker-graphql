@@ -1,0 +1,15 @@
+{
+  "name": "flask-python",
+  "version": "1.0.0",
+  "description": "FullStack Flask, React, Docker, AWS",
+  "main": "app.py",
+  "repository": "git@github.com:mattd429/flask-blog.git",
+  "author": "Matthew Brown <mattd429@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.20.2"
+  },
+  "dependencies": {
+    "react": "^16.5.2"
+  }
+}
