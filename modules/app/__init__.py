@@ -55,8 +55,8 @@ def create_app(test_config=None):
     ''' Add mongo url to flask config, this allows flask_pymongo to make the connection. 
         The mongo object returns can be used in all the routes
     '''
-    app.config['MONGO_URI'] = os.environ.get('DB')
-    mongo = PyMongo(app)
+    #app.config['MONGO_URI'] = os.environ.get('DB')
+    #mongo = PyMongo(app)
 
     app.config.from_mapping(
         SECRET_KEY='dev',

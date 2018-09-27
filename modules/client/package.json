@@ -5,12 +5,12 @@
   "repository": "git@github.com:mattd429/flask-blog.git",
   "author": "Matthew Brown <mattd429@gmail.com>",
   "license": "MIT",
-  "main": "index.jsx",
   "scripts": {
-    "start": "webpack-dev-server index.jsx"
+    "start": "react-scripts start"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "react-scripts": "^1.1.5",
     "webpack": "^4.20.2"
   },
   "dependencies": {
