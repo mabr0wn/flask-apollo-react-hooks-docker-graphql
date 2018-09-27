@@ -1,16 +1,26 @@
 version: '3.5'
-services:
- web_dev:
-  build: .
-  ports:
-    - "4000:4000"
-  volumes:
-    - .:/app
-  environment:
-    - ENV=development
-    - PORT=4000
-    - DB=mongodb://mongodb:27017/blogDev
 
-networks:
-  default:
-   name: web_dev
+services:
+  flask:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+      - PORT=4000
+      - DB=mongo://mongodb:27017/dev
+  react:
+    build:
+      context: ./modules/client
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './modules/client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}

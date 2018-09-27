@@ -51,6 +51,7 @@ def create_app(test_config=None):
     """
     app = Flask(__name__, instance_relative_config=True)
     sentry.init_app(app)
+    #app.config.from_object('project.config.DevelopmentConfig')
 
     ''' Add mongo url to flask config, this allows flask_pymongo to make the connection. 
         The mongo object returns can be used in all the routes
