@@ -53,6 +53,7 @@ def create_app(test_config=None):
     would be deploying would set the SECRET_KEY to a real one.
     """
     app = Flask(__name__, instance_relative_config=True)
+    app.debug = True
     sentry.init_app(app)
     #app.config.from_object('project.config.DevelopmentConfig')
 

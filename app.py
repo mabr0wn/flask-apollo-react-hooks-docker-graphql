@@ -3,6 +3,8 @@ import os
 import sys
 
 from flask import jsonify, make_response, send_from_directory
+from flask_graphql import GraphQLView
+from flask_cors import CORS
 
 """ Join Root path with `modules` path """
 ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -13,7 +15,14 @@ PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
 
 
 from modules import logger
-from modules.app.project import create_app
+from modules.app import create_app
+from modules.app.schema import Query
+from graphene import Schema
+
+
+
+view_func = GraphQLView.as_view(
+    'graphql', schema=Schema(query=Query), graphiql=True)
 
 app = create_app()
 
@@ -28,6 +37,8 @@ def not_found(error):
     """ error handler """
     LOG.error(error)
     return make_response(jsonify({'error': 'Not Found'}), 404)
+
+app.add_url_rule('/graphql', view_func=view_func)
 
 @app.route('/')
 def index():
@@ -46,6 +57,7 @@ def static_proxy(path):
     return send_from_directory(dir_name, file_name)
 
 if __name__ == "__main__":
+    CORS(app, resources={r'/graphql': {'origins': '*'}})
     LOG.info('running environment: {}'.format(os.environ.get('ENV')))
     app.config['DEBUG'] = os.environ.get('ENV') == 'development'
     app.run(host='0.0.0.0', port=int(PORT))
