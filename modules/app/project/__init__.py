@@ -26,12 +26,15 @@ class JSONEncoder(json.JSONEncoder):
             return str(o)
         return json.JSONEncoder.default(self, o)
 
+import sentry_sdk
+
 from sentry_sdk import configure_scope
 with configure_scope() as scope:
     scope.user = {"email": "mattd429@gmail.com"}
 
 from raven.contrib.flask import Sentry
 sentry = Sentry(dsn='https://191dbfc870984eba879f4f2ed9717902@sentry.io/1289031')
+sentry_sdk.init(release="flask-react-docker@0.0.1")
 
 def create_app(test_config=None):
     """

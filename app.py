@@ -11,6 +11,7 @@ sys.path.append(os.path.join(ROOT_PATH, 'modules'))
 
 PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
 
+
 from modules import logger
 from modules.app.project import create_app
 

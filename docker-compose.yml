@@ -1,5 +1,4 @@
 version: '3.5'
-
 services:
   flask:
     build: .
@@ -23,4 +22,3 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
-      - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
