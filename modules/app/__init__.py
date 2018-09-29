@@ -3,35 +3,12 @@ import os
 import json
 import datetime
 # PIP imports
-from bson.objectid import ObjectId
 from flask import Flask
-from flask_pymongo import PyMongo
-# Local imports
-#from app.controllers import *
-
-class JSONEncoder(json.JSONEncoder):
-
-    def default(self, o):
-        """
-        :Extend the json-encoder class to support `ObjectId` & `datetime`
-        data types used to store `_id` & `time-stamp` as a group in MongoDB.
-        All the responses need to be converted into json string, to enable the cross-platform
-        data interpretation.  We convert the `ObjectId` & `datetime` to a `string`.
-        :param o: calling to the object
-        :return: in string format.
-        """
-        if isinstance(o, ObjectId):
-            return str(o)
-        if isinstance(o, datetime.datetime):
-            return str(o)
-        return json.JSONEncoder.default(self, o)
-
+# Sentry
 import sentry_sdk
-
 from sentry_sdk import configure_scope
 with configure_scope() as scope:
     scope.user = {"email": "mattd429@gmail.com"}
-
 from raven.contrib.flask import Sentry
 sentry = Sentry(dsn='https://191dbfc870984eba879f4f2ed9717902@sentry.io/1289031')
 sentry_sdk.init(release="flask-react-docker@0.0.1")
@@ -55,18 +32,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.debug = True
     sentry.init_app(app)
-    #app.config.from_object('project.config.DevelopmentConfig')
-
-    ''' Add mongo url to flask config, this allows flask_pymongo to make the connection. 
-        The mongo object returns can be used in all the routes
-    '''
-    #app.config['MONGO_URI'] = os.environ.get('DB')
-    #mongo = PyMongo(app)
-
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
+    app.config.from_mapping(SECRET_KEY='dev')
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -80,12 +46,6 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    from . import db
-    db.init_app(app)
-
-    ''' modify the default json-encoder with our customer json class extender. '''
-    app.json_encoder = JSONEncoder
 
     return app
 

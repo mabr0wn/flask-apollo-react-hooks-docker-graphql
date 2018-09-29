@@ -1,8 +1,0 @@
-node_modules
-coverage
-build
-env
-htmlcov
-.dockerignore
-Dockerfile-dev
-Dockerfile-prod

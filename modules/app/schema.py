@@ -1,42 +1,108 @@
-from graphene import ObjectType, String, Boolean, ID, List, Field, Int
-import json
-import os
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
+from graphql import (
+    GraphQLField, GraphQLNonNull, GraphQLArgument,
+    GraphQLObjectType, GraphQLList, GraphQLBoolean, GraphQLString,
+    GraphQLSchema
+)
 
-def _json_object_hook(d):
-    return namedtuple('X', d.keys())(*d.values())
+Blog = namedtuple('Blog', 'id title text')
 
-def json2obj(data):
-    return json.loads(data, object_hook=_json_object_hook)
+BlogList = namedtuple('BlogList', 'blogs')
 
-class User(ObjectType):
-    first_name = String()
-    has_profile_pic = Boolean()
-    id = ID()
-    picture_url = String()
-    smart_name = String()
-    thumbnail_url = String()
+BlogType = GraphQLObjectType(
+    name='Blog',
+    fields=lambda: {
+        'id': GraphQLField(
+            GraphQLNonNull(GraphQLString),
+        ),
+        'title': GraphQLField(
+            GraphQLString
+        ),
+        'text': GraphQLField(
+            GraphQLString
+        )
+    }
+)
+
+BlogListType = GraphQLObjectType(
+    name='BlogList',
+    fields=lambda : {
+        'blogs': GraphQLField(
+            GraphQLList(BlogType),
+            resolver=lambda blog_list, *_: get_blogs(blog_list),
+        )
+    }
+)
+
+blog_data = OrderedDict({
+    '1': Blog(id='1', title='GraphQL', text='Rocks!'),
+    '2': Blog(id='2', title='Flask + React', text='Racks!')
+})
+
+def get_blog_list():
+    return BlogList(blogs=blog_data.keys())
+
+def get_blog(id):
+    return blog_data.get(id)
+
+def get_blogs(blog_list):
+    return map(get_blog, blog_list.blogs)
+
+def get_blog_single():
+    return Blog(id=1, title='GraphQL', text='Rocks!')
+
+def add_blog(title, text):
+    blog = Blog(id=str(len(blog_data) + 1), title=title, text=text)
+    blog_data[blog.id] = blog
+    return blog
+
+def toggle_blog(id):
+    cur_blog = blog_data[id]
+    blog = Blog(id=id, title=cur_blog.title, text=cur_blog.text)
+    blog_data[id] = blog
+    return blog
+
+QueryRootType = GraphQLObjectType(
+    name='Query',
+    fields=lambda: {
+        'test': GraphQLField(
+            GraphQLString,
+            args={
+                'who': GraphQLArgument(GraphQLString)
+            },
+            resolver=lambda root, args, *_:
+                'Hello %s' % (args.get('who') or 'World')
+        ),
+        'blog': GraphQLField(
+            BlogType,
+            resolver=lambda root, args, *_: get_blog_single(),
+        ),
+        'blogList': GraphQLField(
+            BlogListType,
+            resolver=lambda root, args, *_: get_blog_list(),
+        )
+    }
+)
 
 
-class Listing(ObjectType):
-    id = ID()
-    name = String()
+MutationRootType = GraphQLObjectType(
+    name='Mutation',
+    fields=lambda: {
+        'addBlog': GraphQLField(
+            BlogType,
+            args={
+                'text': GraphQLArgument(GraphQLString)
+            },
+            resolver=lambda root, args, *_: add_blog(args.get('text'))
+        ),
+        'toggleBlog': GraphQLField(
+            BlogType,
+            args={
+                'id': GraphQLArgument(GraphQLString)
+            },
+            resolver=lambda root, args, *_: toggle_blog(args.get('id'))
+        )
+    }
+)
 
-class Review(ObjectType):
-    author = Field(User)
-    author_id = ID()
-    can_be_edited = Boolean()
-    comments = String()
-    created_at = String()
-    id = Int()
-    language = String()
-    listing = Field(Listing)
-    listing_id = ID()
-    recipient = Field(User)
-    recipient_id = ID()
-    response = String()
-    role = String()
-    user_flag = Boolean()
-
-class Query(ObjectType):
-    review = List(Review, id=Int(required=True))
+Schema = GraphQLSchema(QueryRootType, MutationRootType)

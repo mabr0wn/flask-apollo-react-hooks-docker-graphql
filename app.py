@@ -1,30 +1,28 @@
-""" index file for REST APIs using Flask """
+# Python imports
 import os
 import sys
-
+# Flask
 from flask import jsonify, make_response, send_from_directory
 from flask_graphql import GraphQLView
 from flask_cors import CORS
-
-""" Join Root path with `modules` path """
-ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
-os.environ.update({'ROOT_PATH': ROOT_PATH})
-sys.path.append(os.path.join(ROOT_PATH, 'modules'))
-
-PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
-
-
+# Local
 from modules import logger
 from modules.app import create_app
-from modules.app.schema import Query
-from graphene import Schema
-
-
-
-view_func = GraphQLView.as_view(
-    'graphql', schema=Schema(query=Query), graphiql=True)
+from modules.app.schema import Schema
 
 app = create_app()
+
+"""
+:ROOT_PATH : Set root path
+:PUBLIC_PATH : Always for joining react public index.html to ROOT_PATH
+"""
+ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
+os.environ.update({'ROOT_PATH': ROOT_PATH})
+PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
+
+''' Set the view for Graphiql '''
+view_func = GraphQLView.as_view(
+    'graphql', schema=Schema, graphiql=True)
 
 """ logger object to output info and debug information """
 LOG = logger.get_root_logger(os.environ.get(
@@ -32,13 +30,14 @@ LOG = logger.get_root_logger(os.environ.get(
 
 PORT = os.environ.get('PORT')
 
+app.add_url_rule('/graphql', view_func=view_func)
+
+""" Sets routes for Flask """
 @app.errorhandler(404)
 def not_found(error):
     """ error handler """
     LOG.error(error)
     return make_response(jsonify({'error': 'Not Found'}), 404)
-
-app.add_url_rule('/graphql', view_func=view_func)
 
 @app.route('/')
 def index():

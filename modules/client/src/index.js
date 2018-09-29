@@ -8,7 +8,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 //Local  
 import App from './components/App.jsx';
-//import registerServiceWorker from './registerServiceWorker.js';
 import './styles/index.css';
 
 const httpLink = createHttpLink({
@@ -23,8 +22,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />,
+    <App />
   </ApolloProvider>,
  document.getElementById('root')
 )
-//registerServiceWorker()
