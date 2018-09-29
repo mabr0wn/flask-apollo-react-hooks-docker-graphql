@@ -1,5 +1,5 @@
-# FullStack: Flask + React + Docker + AWS
-[Flask](http://flask.pocoo.org/) is a very powerful framework. You can build a vast variety of systems from a very basic web application to a large platform using flask. [React](https://reactjs.org) is a very popular, easy to use & very powerful front-end development JavaScript library. [Docker](https://www.docker.com/) is an open platform for developers and system administrators to build, ship, and run distributed applications, whether on laptops, data centre VMs, or the cloud. [AWS](https://aws.amazon.com/) Amazon Web Services (AWS) is a secure [cloud](https://aws.amazon.com/what-is-cloud-computing/) services platform, offering compute power, database storage, content delivery and other functionality to help businesses scale and grow.
+# FullStack: Flask + React + Docker + GraphQL
+[Flask](http://flask.pocoo.org/) is a very powerful framework. You can build a vast variety of systems from a very basic web application to a large platform using flask. [React](https://reactjs.org) is a very popular, easy to use & very powerful front-end development JavaScript library. [Docker](https://www.docker.com/) is an open platform for developers and system administrators to build, ship, and run distributed applications, whether on laptops, data centre VMs, or the cloud. [GraphQL](https://graphql.org/) is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
 
 ### IDE:
 
@@ -11,7 +11,7 @@ Below is the directory structure, you can follow this structure or create your o
 
 > **NOTE**: this is just an example of how to start your project structure, keep in mind this will change overtime.  Once this project is complete I will add the final stack image below and remove this note.
 
-![alt text](https://i.imgur.com/UnQbMtu.png)
+![alt text](https://i.imgur.com/k5j8Gl9.png)
 
 - **instance** - This is located outside the app package and can hold local
     data that shouldn't be committed to version control, such as configuration secrets
@@ -20,11 +20,11 @@ Below is the directory structure, you can follow this structure or create your o
 - **venv**: This is to setup your virtual environment in Python, it seperates itself from the OS build.
 - **requirements.txt**: Will install any Python Packages you will need for your app to run properly.
 - **Dockerfile**: Dockerfile to build the docker containers.
-- **docker-compose.yml & docker-compose.prod.yml**: Configuration for both development & production.
+- **docker-compose.yml**: Configuration development.
 - **modules**: The directory that will contain all the modules, i.e. app, logger, etc.
 - **app**: The main directory for the web server, where we build Flask.
-- **dist**: Where React and other static files will serve.
 - **logger**: Log errors and info into `output.log`.
+- **client**: Frontend React Framework.
 
 
 Start by creating `__init__.py` in your "app" module.
@@ -56,17 +56,31 @@ def create_app():
 Next create your `app.py` which will execute the Flask server using REST APIs calls.
 
 ```python
+# Python imports
 import os
 import sys
-
+# Flask
 from flask import jsonify, make_response, send_from_directory
+from flask_graphql import GraphQLView
+from flask_cors import CORS
+# Local
+from modules import logger
+from modules.app import create_app
+from modules.app.schema import Schema
 
+app = create_app()
+
+"""
+:ROOT_PATH : Set root path
+:PUBLIC_PATH : Always for joining react public index.html to ROOT_PATH
+"""
 ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 os.environ.update({'ROOT_PATH': ROOT_PATH})
-sys.path.append(os.path.join(ROOT_PATH, 'modules'))
+PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
 
-import logger
-from app import app
+''' Set the view for Graphiql '''
+view_func = GraphQLView.as_view(
+    'graphql', schema=Schema, graphiql=True)
 
 """ logger object to output info and debug information """
 LOG = logger.get_root_logger(os.environ.get(
@@ -74,6 +88,9 @@ LOG = logger.get_root_logger(os.environ.get(
 
 PORT = os.environ.get('PORT')
 
+app.add_url_rule('/graphql', view_func=view_func)
+
+""" Sets routes for Flask """
 @app.errorhandler(404)
 def not_found(error):
     """ error handler """
@@ -83,20 +100,21 @@ def not_found(error):
 @app.route('/')
 def index():
     """ serve index.html """
-    return send_from_directory('dist', 'index.html')
+    return send_from_directory(PUBLIC_PATH, 'index.html')
 
 @app.route('/<path:path>')
 def static_proxy(path):
     """
     static folder serve
-    :param path: to load all static files in `dist`
-    :return: the directory `dist` with filename i.e. 404.html
+    :param path: to load all static files in `public`
+    :return: the directory `public` with filename i.e. 404.html
     """
     file_name = path.split('/')[-1]
-    dir_name = os.path.join('dist', '/'.join(path.split('/')[:-1]))
+    dir_name = os.path.join('public', '/'.join(path.split('/')[:-1]))
     return send_from_directory(dir_name, file_name)
 
 if __name__ == "__main__":
+    CORS(app, resources={r'/graphql': {'origins': '*'}})
     LOG.info('running environment: {}'.format(os.environ.get('ENV')))
     app.config['DEBUG'] = os.environ.get('ENV') == 'development'
     app.run(host='0.0.0.0', port=int(PORT))
@@ -143,16 +161,18 @@ This `logger.py` in the simpliest form will format a nice string format of your 
 > **NOTE**: Please make sure to add all required packages to you `requirements.txt`
 
 ```
-Flask
-requests
+Flask==1.0.2
 raven[flask]
 sentry-sdk==0.3.5
+graphql-core==2.1
+flask-graphql==2.0.0
+flask-cors==3.0.6
 ```
 
 #### Setup Dockerfile:
 
 ```
-FROM python:3.5
+FROM python:3.6
 ADD . /app
 WORKDIR /app
 EXPOSE 4000
@@ -163,21 +183,30 @@ ENTRYPOINT ["python","app.py"]
 #### Setup docker-compose.yml
 
 ```
+version: '3.5'
 services:
- web:
-  build: .
-  ports:
-   - "4000:4000"
-  volumes:
-   - .:/app
-  environment:
-   - ENV=development
-   - PORT=4000
-   - DB=mongodb://mongodb:27017/dev
-
-networks:
- default:
-  name: web
+  flask:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+      - PORT=4000
+      - DB=mongo://mongodb:27017/dev
+  react:
+    build:
+      context: ./modules/client
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './modules/client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
 ```
 
 After that create some html files in your dist directory.  Now your have a bare minimum application with flask server and docker deployment.  Run the following command below:
