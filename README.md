@@ -209,12 +209,12 @@ services:
       - PORT=3000
 ```
 
-After that create some html files in your dist directory.  Now your have a bare minimum application with flask server and docker deployment.  Run the following command below:
+  Now your have a bare minimum application with flask server and docker deployment.  Run the following command below:
 
 ` $ docker-compose up --build`
 
 Your output should look something like this:
 
-![alt text](https://i.imgur.com/dlJwcc7.png)
+![alt text](https://i.imgur.com/qzKUiJV.png)
 
 Access [localhost](http://localhost:4000/) in your browser, and you will see the `index.html` loaded.
