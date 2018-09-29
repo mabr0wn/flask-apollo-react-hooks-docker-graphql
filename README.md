@@ -177,7 +177,7 @@ def get_child_logger(root_logger, name):
     return logging.getLogger('.'.join([root_logger, name]))
 ```
 
-This `logger.py` in the simpliest form will format a nice string format of your log message to your `output.log` file your will create in your root directory.
+This `logger.py` in the simpliest form will format a nice string format of your log message to your `output.log` file you will create in your root directory.
 
 > **NOTE**: Please make sure to add all required packages to you `requirements.txt`
 
