@@ -1,6 +1,27 @@
 # FullStack: Flask + React + Docker + GraphQL
 [Flask](http://flask.pocoo.org/) is a very powerful framework. You can build a vast variety of systems from a very basic web application to a large platform using flask. [React](https://reactjs.org) is a very popular, easy to use & very powerful front-end development JavaScript library. [Docker](https://www.docker.com/) is an open platform for developers and system administrators to build, ship, and run distributed applications, whether on laptops, data centre VMs, or the cloud. [GraphQL](https://graphql.org/) is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
 
+```
+ mkdir my_project_folder 
+```
+
+```
+cd my_project_folder
+git init
+git add .
+git commit -m 'first commit'
+```
+
+```
+git clone git@github.com:mattd429/flask-blog.git
+```
+
+### DockerHub
+
+You can also grab these containers on [dockerhub](https://hub.docker.com/r/mattd429/flask_react_docker/tags/)
+
+![alt text](https://i.imgur.com/MUbl7u2.png)
+
 ### IDE:
 
 It's good practice to use a IDE that works with your current environment, below I set this project up using [VSCode](https://code.visualstudio.com/).  I chose this since we are using Python's Flask microframework as our backend.  You can choose anything that works for you.
