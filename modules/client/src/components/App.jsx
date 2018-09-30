@@ -14,7 +14,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="App-header">
-                    <h2>Flask + React + Docker + AWS</h2>
+                    <h2>Flask + React + Docker + GraphQL/h2>
                 </div>
             </div>
         );
