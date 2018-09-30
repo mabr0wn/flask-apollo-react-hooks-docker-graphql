@@ -13,7 +13,7 @@ services:
   react:
     build:
       context: ./modules/client
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
     volumes:
       - './modules/client:/usr/src/app'
       - '/usr/src/app/node_modules'
