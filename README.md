@@ -32,7 +32,7 @@ Below is the directory structure, you can follow this structure or create your o
 
 > **NOTE**: this is just an example of how to start your project structure, keep in mind this will change overtime.  Once this project is complete I will add the final stack image below and remove this note.
 
-![alt text](https://i.imgur.com/k5j8Gl9.png)
+![alt text](https://i.imgur.com/aBqNScy.png)
 
 - **instance** - This is located outside the app package and can hold local
     data that shouldn't be committed to version control, such as configuration secrets
@@ -230,7 +230,7 @@ services:
       - PORT=3000
 ```
 
-  Now your have a bare minimum application with flask server and docker deployment.  Run the following command below:
+  Now your have a bare minimum application with flask server and react client.  Run the following command below:
 
 ` $ docker-compose up --build`
 
