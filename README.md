@@ -1,16 +1,36 @@
+![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)
+![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
+
+
+
 # FullStack: Flask + React + Docker + GraphQL
 [Flask](http://flask.pocoo.org/) is a very powerful framework. You can build a vast variety of systems from a very basic web application to a large platform using flask. [React](https://reactjs.org) is a very popular, easy to use & very powerful front-end development JavaScript library. [Docker](https://www.docker.com/) is an open platform for developers and system administrators to build, ship, and run distributed applications, whether on laptops, data centre VMs, or the cloud. [GraphQL](https://graphql.org/) is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
 
-```
- mkdir my_project_folder 
-```
+### SSH
+1. Copy the SSH key to your clipboard.
 
+If your SSH key file has a different name than the example code, modify the filename to match your current setup. When copying your key, don't add any newlines or whitespace.
 ```
-cd my_project_folder
-git init
-git add .
-git commit -m 'first commit'
+$ pbcopy < ~/.ssh/id_rsa.pub
+# Copies the contents of the id_rsa.pub file to your clipboard
 ```
+>**Tip**: If pbcopy isn't working, you can locate the hidden .ssh folder, open the file in your favorite text editor, and copy it to your clipboard.
+
+2. In the upper-right corner of any page, click your profile photo, then click **Settings**.
+
+3. In the user settings sidebar, click **SSH and GPG keys**.
+
+4. Click **New SSH key or Add SSH key.**
+
+5. In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air".
+
+6. Paste your key into the "Key" field.
+
+7. Click **Add SSH key.**
+
+8. If prompted, confirm your GitHub password.
+
 
 ```
 git clone git@github.com:mattd429/flask-blog.git
