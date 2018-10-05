@@ -141,7 +141,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(PORT))
 ```    
 
-`ROOT_PATH` actually adds "modules" directory in sys, that way we can directly import every modules from that directory.  For **PORT** and **ENV** we will define those in our `docker-compose.yml` file. We have define 3 default routes, one for `index.html`, another for **error handling**, and one more to serve all static files in `dist` directory.
+`ROOT_PATH` actually adds "index.html" file in sys, that way we can directly access that file.  For **PORT** and **ENV** we will define those in our `docker-compose.yml` file. We have define 3 default routes, one for `index.html`, another for **error handling**, and one more to serve all static files in `dist` directory.
 
 If you want to use logger for debugging, info, and warnings below is a basic setup of logger to the `output.log` file.
 
