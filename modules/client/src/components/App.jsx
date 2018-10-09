@@ -9,7 +9,13 @@ class App extends Component {
   constructor() { 
       super();
 
-    }  
+    }
+    /*
+     * The `render()` function should be pure, meaning that it 
+     * does not modify component state, it returns the same 
+     * result each time it’s invoked, and it does not directly 
+     * interact with the browser.  
+     */ 
     render() {
         return (
             <div className="App">
