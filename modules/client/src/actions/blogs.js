@@ -22,8 +22,9 @@ export const ENUMERATE_BLOGS = 'ENUMERATE_BLOGS';
  * Action creators are pure functions.
  */
 export const enumerateBlogs = () => {
-    return {
+    return (dispatch) => {
+        dispatch({
         type: ENUMERATE_BLOGS,
-
+        })
     }
  }
