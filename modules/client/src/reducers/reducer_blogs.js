@@ -7,7 +7,7 @@ import {
 /* List of all posts and an active post  */
 const INITIAL_STATE = {
     all: [],
-    post: null
+    blog: null
 };
 
 export default function(state=INITIAL_STATE, action) {
