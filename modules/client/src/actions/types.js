@@ -15,5 +15,12 @@
  * for more practical tips on keeping your codebase clean.
  * 
  */
+// Blog Types
 export const LIST_BLOGS      =  'LIST_BLOGS';
 export const ENUMERATE_BLOGS = 'ENUMERATE_BLOGS';
+// Auth Types
+export const AUTH_USER = 'AUTH_USER';
+export const NONAUTH_USER = 'NONAUTH_USER';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const FETCH_MESSAGE = 'FETCH_MESSAGE';
+
