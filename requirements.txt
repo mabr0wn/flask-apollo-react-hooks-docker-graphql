@@ -4,3 +4,4 @@ sentry-sdk==0.3.5
 graphql-core==2.1
 flask-graphql==2.0.0
 flask-cors==3.0.6
+Flask-RESTful==0.3.6
