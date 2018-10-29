@@ -10,6 +10,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import App from './components/App.jsx';
 import './styles/index.css';
 
+
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql'
 });

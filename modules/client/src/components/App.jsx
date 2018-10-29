@@ -1,15 +1,19 @@
 // React
 import * as React from 'react';
 import { Component } from 'react';
-// Local
-import Blogs  from '../containers/Blogs';
-import Signin from '../containers/auth/Signin';
+import { 
+    BrowserRouter as Router,
+    Route
+} from 'react-router-dom';
+// Redux
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 /* import promise from 'redux-promise';*/
 import reduxThunk from 'redux-thunk';
+// Local
 import { AUTH_USER } from '../actions/types';
 import reducers from '../reducers';
+import routes from '../routes';
 
 // Connect reduxThunk to middleware so I could dispatch actions.
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -42,8 +46,11 @@ class App extends Component {
             <div className="App">
                 <div className="App-header">
                     <h2>Flask + React + Docker + GraphQL</h2>
-                    <Blogs />
-                    <Signin />
+                    <Router>
+                        <div>
+	                    <Route component={routes} />
+                        </div>
+                    </Router>
                 </div>
             </div>
             </Provider>
