@@ -1,3 +1,4 @@
+// Types
 import { 
     AUTH_USER, 
     NONAUTH_USER, 

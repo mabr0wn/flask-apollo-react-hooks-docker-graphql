@@ -1,12 +1,30 @@
-import axios from 'axios';
+// React
 import { 
     BrowserRouter as Router 
 } from 'react-router-dom';
-import { AUTH_USER, NONAUTH_USER, AUTH_ERROR, FETCH_MESSAGE } from './types';
-
+// API
+import axios from 'axios';
+// Types
+import { 
+    AUTH_USER, 
+    NONAUTH_USER, 
+    AUTH_ERROR, 
+    FETCH_MESSAGE 
+} from './types';
+/**
+ * Gives us the host location and split at the colon.
+ * `window.location.host` is hostname and port.
+ */
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://api.' + host + '/api/v1';
 
+/**
+ * `signinUser` will require you to sign up with
+ * username and password currently using axios to 
+ * fetch to the backend which is Flask and will
+ * implement Flask-RESTful API. 
+ * 
+ */
 export function signinUser({username, password}) {
     return function(dispatch) {
         console.log('>>> src/actions/auth.js');
@@ -20,7 +38,7 @@ export function signinUser({username, password}) {
                 localStorage.setItem('token', resp.data.token);
                 console.log('TokenSaved')
                 Router.push('/');
-                console.log('redirected to /');
+                console.log('redirected to Home.');
             })
             .catch(() => {
                 dispatch(authError('did not auth error'))

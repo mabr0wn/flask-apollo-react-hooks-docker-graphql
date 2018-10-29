@@ -1,30 +1,43 @@
+// React
 import React, { Component } from 'react';
+// Redux Form
 import { reduxForm } from 'redux-form';
+// Local Redux
 import * as actions from '../../actions/auth';
 
+/**
+ * log user in
+ * signinUser comes from actions.
+ * it is an action creator that sends an username/pass to the server
+ * and if they're correct, saves the token
+ */
 class Signin extends Component {
     handleFormSubmit({username, password}) {
-	/* console.log(username, password);*/
-	// log user in
-	// signinUser comes from actions.
-	// it is an action creator that sends an username/pass to the server
-	// and if they're correct, saves the token
+	console.log(username, password);
 	this.props.signinUser({username,password});
-    }
-
+	}
+	/**
+	 * Render an alert if there
+	 * is some error with the Signin.
+	 */
     renderAlert(){
 	if (this.props.errorMessage) {
 	    return (
-		<div className="alert alert-danger">
-		    {this.props.errorMessage}
-		</div>
-	    );
+			<div className="alert alert-danger">
+		    	{this.props.errorMessage}
+			</div>
+	    	);
+		}
 	}
-    }
     render () {
 	/* props from reduxForm */
-	const { handleSubmit, fields: { username, password }} = this.props;
-	/* console.log(...username);*/
+	const { 
+		handleSubmit, 
+		fields: { 
+			username, 
+			password 
+		}} = this.props;
+	console.log(...username);
 	return (
 	    <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 		<fieldset className="form-group">

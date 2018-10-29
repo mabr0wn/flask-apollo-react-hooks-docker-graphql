@@ -16,8 +16,14 @@
  * 
  */
 // Blog Types
-export const LIST_BLOGS      =  'LIST_BLOGS';
-export const ENUMERATE_BLOGS = 'ENUMERATE_BLOGS';
+export const FETCH_BLOGS = 'FETCH_BLOGS';
+export const FETCH_BLOG = 'FETCH_BLOG';
+export const CREATE_BLOG = 'CREATE_BLOG';
+export const DELETE_BLOG = 'DELETE_BLOG';
+export const UPDATE_BLOG = 'UPDATE_BLOG';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const FETCH_SETTINGS = 'FETCH_SETTINGS';
+export const CREATE_SUBSCRIBER = 'CREATE_SUBSCRIBER';
 // Auth Types
 export const AUTH_USER = 'AUTH_USER';
 export const NONAUTH_USER = 'NONAUTH_USER';
