@@ -37,7 +37,6 @@ class Signin extends Component {
 			username, 
 			password 
 		}} = this.props;
-	console.log(...username);
 	return (
 	    <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 		<fieldset className="form-group">
