@@ -20,7 +20,7 @@ import {
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://api.' + host + '/api/v1';
 
-export function fetchblogs(filter) {
+export function fetchBlogs(filter) {
     var blogs_url = `${ROOT_URL}/blogs/`;
     var page_url = "";
     if (filter) {

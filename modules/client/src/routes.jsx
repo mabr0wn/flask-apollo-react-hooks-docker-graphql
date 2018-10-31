@@ -5,6 +5,7 @@ import {
     Switch
 } from 'react-router-dom';
 import Signin from './containers/auth/Signin';
+import Blogs from './containers/blog/Blogs';
 
 export default class routes extends Component {
   render() {
@@ -12,6 +13,7 @@ export default class routes extends Component {
      <Router>
       <div>
       <Switch>
+      <Route exact path="/" component={Blogs} />
 	    <Route path="/login" component={Signin} />
       </Switch>
       </div>
