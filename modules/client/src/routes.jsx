@@ -4,8 +4,8 @@ import {
     Route,
     Switch
 } from 'react-router-dom';
-import Signin from './containers/auth/Signin';
-import Blogs from './containers/blog/Blogs';
+import Signin from './containers/auth/Signin.jsx';
+import Blogs from './containers/blog/Blogs.jsx';
 
 export default class routes extends Component {
   render() {

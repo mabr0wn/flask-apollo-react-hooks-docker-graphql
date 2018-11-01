@@ -11,7 +11,7 @@ import MetaTags from 'react-meta-tags';
 import {  
     fetchBlogs 
 } from '../../actions/blogs';
-import Blog from './Blog';
+import Blog from './Blog.jsx';
 
 /**
  * This is container class which will do all the heavy lifting,

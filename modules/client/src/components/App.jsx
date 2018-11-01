@@ -13,7 +13,7 @@ import reduxThunk from 'redux-thunk';
 // Local
 import { AUTH_USER } from '../actions/types';
 import reducers from '../reducers';
-import routes from '../routes';
+import routes from '../routes.jsx';
 
 // Connect reduxThunk to middleware so I could dispatch actions.
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);

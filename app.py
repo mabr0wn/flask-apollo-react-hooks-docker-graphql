@@ -52,8 +52,9 @@ def static_proxy(path):
     :return: the directory `public` with filename i.e. 404.html
     """
     file_name = path.split('/')[-1]
-    dir_name = os.path.join('public', '/'.join(path.split('/')[:-1]))
+    dir_name = os.path.join(PUBLIC_PATH, '/'.join(path.split('/')[:-1]))
     return send_from_directory(dir_name, file_name)
+
 
 if __name__ == "__main__":
     CORS(app, resources={r'/graphql': {'origins': '*'}})
