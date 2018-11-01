@@ -41,6 +41,7 @@ const config = {
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
+        mode: 'development',
         contentBase: path.join(__dirname, 'public'),
         host: "localhost",
         proxy: {
