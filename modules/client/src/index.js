@@ -21,6 +21,9 @@ const client = new ApolloClient({
 
 });
 
+
+
+console.log(React.version);
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
