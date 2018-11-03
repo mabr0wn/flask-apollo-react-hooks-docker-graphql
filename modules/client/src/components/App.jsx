@@ -9,15 +9,14 @@ import { Provider } from 'react-redux';
 // Local
 import Routes from '../Routes.jsx';
 import store from '../store/store';
-
+/*
+ * =======================================================
+ * Presentational React functional Component, will not worry about
+ * how the applications works, but only care about how
+ * our application will looks.
+ * =======================================================
+ */ 
 const App = () => {
-    /*
-     * =======================================================
-     * Presentational React functional Component, will not worry about
-     * how the applications works, but only care about how
-     * our application will looks.
-     * =======================================================
-     */ 
     return (
         <Provider store={store}>
             <div className="App">

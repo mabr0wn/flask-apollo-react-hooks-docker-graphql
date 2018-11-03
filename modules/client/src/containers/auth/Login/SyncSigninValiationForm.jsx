@@ -14,20 +14,20 @@ const validate = values => {
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
   }
-  if (!values.age) {
-    errors.age = 'Required'
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number'
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old'
+  if (!values.password) {
+    errors.password = 'Required'
+  } else if (!/^[a-zA-Z]\w{3,14}$/i.test(values.password)) {
+    errors.password = 'Password is invalid'
+  } else if (values.password.length < 6) {
+    errors.password = 'Password must be atleast 6 characters, please try again!'
   }
   return errors
 }
 
 const warn = values => {
   const warnings = {}
-  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...'
+  if (values.password < 8) {
+    warnings.password = 'It is recommended to user passwords length of atleast 8 characters.'
   }
   return warnings
 }
@@ -48,7 +48,7 @@ const SyncSigninValidationForm = (props) => {
     <form onSubmit={handleSubmit}>
       <Field name="username" type="text" component={renderField} label="Username"/>
       <Field name="email" type="email" component={renderField} label="Email"/>
-      <Field name="age" type="number" component={renderField} label="Age"/>
+      <Field name="password" type="password" component={renderField} label="Password"/>
       <div>
         <button type="submit" disabled={submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
