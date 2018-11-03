@@ -1,23 +1,27 @@
-import React, { Component } from 'react'
+// React
+import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
     Switch
 } from 'react-router-dom';
-import Signin from './containers/auth/Signin.jsx';
+// Local
 import Blogs from './containers/blog/Blogs.jsx';
+import Signin from './components/Login/Signin.jsx';
 
-export default class routes extends Component {
-  render() {
-    return (
+
+
+function routes() {
+  return (
      <Router>
-      <div>
-      <Switch>
-      <Route exact path="/" component={Blogs} />
-	    <Route path="/login" component={Signin} />
-      </Switch>
-      </div>
+        <div>
+        <Switch>
+          <Route exact path="/" component={Blogs} />
+	        <Route path="/login" component={Signin}/>
+        </Switch>
+        </div>
       </Router>
     )
-  }
 }
+
+export default routes;
