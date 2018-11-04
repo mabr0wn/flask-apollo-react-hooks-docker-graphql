@@ -16,7 +16,7 @@ import store from '../store/store';
  * our application will looks.
  * =======================================================
  */ 
-const App = () => {
+function App() {
     return (
         <Provider store={store}>
             <div className="App">

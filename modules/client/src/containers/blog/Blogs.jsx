@@ -5,8 +5,6 @@ import React, {
 import { 
     connect 
 } from 'react-redux';
-// eslint-disable-next-line
-import MetaTags from 'react-meta-tags';
 // Local
 import {  
     fetchBlogs 
