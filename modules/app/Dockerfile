@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:latest
 ADD . /app
 WORKDIR /app
 EXPOSE 4000
