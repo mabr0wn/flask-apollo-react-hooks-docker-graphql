@@ -1,108 +1,51 @@
-from collections import namedtuple, OrderedDict
-from graphql import (
-    GraphQLField, GraphQLNonNull, GraphQLArgument,
-    GraphQLObjectType, GraphQLList, GraphQLBoolean, GraphQLString,
-    GraphQLSchema
-)
+import graphene
+from graphene import relay
+from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType, utils
+from models import Blog as BlogModel
+from models import User as UserModel
+from models import Role as RoleModel
 
-Blog = namedtuple('Blog', 'id title text')
+class Blog(SQLAlchemyObjectType):
+    class Meta:
+        model = BlogModel
+        interfaces = (relay.Node, )
 
-BlogList = namedtuple('BlogList', 'blogs')
+class BlogConnection(relay.Connection):
+    class Meta:
+        node = Blog
 
-BlogType = GraphQLObjectType(
-    name='Blog',
-    fields=lambda: {
-        'id': GraphQLField(
-            GraphQLNonNull(GraphQLString),
-        ),
-        'title': GraphQLField(
-            GraphQLString
-        ),
-        'text': GraphQLField(
-            GraphQLString
-        )
-    }
-)
+class User(SQLAlchemyObjectType):
+    class Meta:
+        model = UserModel
+        interfaces = (relay.Node, )
 
-BlogListType = GraphQLObjectType(
-    name='BlogList',
-    fields=lambda : {
-        'blogs': GraphQLField(
-            GraphQLList(BlogType),
-            resolver=lambda blog_list, *_: get_blogs(blog_list),
-        )
-    }
-)
+class UserConnection(relay.Connection):
+    class Meta:
+        node = User
 
-blog_data = OrderedDict({
-    '1': Blog(id='1', title='GraphQL', text='Rocks!'),
-    '2': Blog(id='2', title='Flask + React', text='Racks!')
-})
+class Role(SQLAlchemyObjectType):
+    class Meta:
+        model = RoleModel
+        interfaces = (relay.Node, )
 
-def get_blog_list():
-    return BlogList(blogs=blog_data.keys())
+class RoleConnection(relay.Connection):
+    class Meta:
+        node = Role
 
-def get_blog(id):
-    return blog_data.get(id)
+SortEnumUser = utils.sort_enum_for_model(UserModel, 'SortEnumUser',
+    lambda c, d: c.upper() + ('ASC' if d else '_DESC'))
 
-def get_blogs(blog_list):
-    return map(get_blog, blog_list.blogs)
+class Query(graphene.ObjectType):
+    node = relay.Node.Field()
+    # Allow only single column sorting
+    all_users = SQLAlchemyConnectionField(
+        UserConnection,
+        sort=graphene.Argument(
+            SortEnumUser,
+            default_value=utils.EnumValue('id_asc', UserModel.id.asc())))
+    # Allows sorting over multiple columns, by default over the primary key
+    all_roles = SQLAlchemyConnectionField(RoleConnection)
+    # Disable sorting over this field
+    all_blogs = SQLAlchemyConnectionField(BlogConnection, sort=None)
 
-def get_blog_single():
-    return Blog(id=1, title='GraphQL', text='Rocks!')
-
-def add_blog(title, text):
-    blog = Blog(id=str(len(blog_data) + 1), title=title, text=text)
-    blog_data[blog.id] = blog
-    return blog
-
-def toggle_blog(id):
-    cur_blog = blog_data[id]
-    blog = Blog(id=id, title=cur_blog.title, text=cur_blog.text)
-    blog_data[id] = blog
-    return blog
-
-QueryRootType = GraphQLObjectType(
-    name='Query',
-    fields=lambda: {
-        'test': GraphQLField(
-            GraphQLString,
-            args={
-                'who': GraphQLArgument(GraphQLString)
-            },
-            resolver=lambda root, args, *_:
-                'Hello %s' % (args.get('who') or 'World')
-        ),
-        'blog': GraphQLField(
-            BlogType,
-            resolver=lambda root, args, *_: get_blog_single(),
-        ),
-        'blogList': GraphQLField(
-            BlogListType,
-            resolver=lambda root, args, *_: get_blog_list(),
-        )
-    }
-)
-
-
-MutationRootType = GraphQLObjectType(
-    name='Mutation',
-    fields=lambda: {
-        'addBlog': GraphQLField(
-            BlogType,
-            args={
-                'text': GraphQLArgument(GraphQLString)
-            },
-            resolver=lambda root, args, *_: add_blog(args.get('text'))
-        ),
-        'toggleBlog': GraphQLField(
-            BlogType,
-            args={
-                'id': GraphQLArgument(GraphQLString)
-            },
-            resolver=lambda root, args, *_: toggle_blog(args.get('id'))
-        )
-    }
-)
-
-Schema = GraphQLSchema(QueryRootType, MutationRootType)
+schema = graphene.Schema(query=Query, types=[Blog, User, Role])

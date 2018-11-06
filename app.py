@@ -8,9 +8,34 @@ from flask_cors import CORS
 # Local
 from modules import logger
 from modules.app import create_app
+from modules.app.database import db_session, init_db
 from modules.app.schema import Schema
 
 app = create_app()
+app.debug = True
+
+default_query = '''
+{
+    allUsers {
+        edges {
+            node {
+                id,
+                username,
+                blog {
+                    id,
+                    title,
+                    body
+                },
+                role {
+                    id,
+                    name
+                }
+            }
+        }
+    }
+}
+'''.strip()
+
 
 """
 :ROOT_PATH : Set root path
@@ -60,6 +85,9 @@ def static_proxy(path):
     dir_name = os.path.join(PUBLIC_PATH, '/'.join(path.split('/')[:-1]))
     return send_from_directory(dir_name, file_name)
 
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
 
 if __name__ == "__main__":
     CORS(app, resources={r'/graphql': {'origins': '*'}})
