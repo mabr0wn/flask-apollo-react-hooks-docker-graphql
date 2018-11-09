@@ -20,7 +20,6 @@ const App = ()  => {
     return (
         <Provider store={store}>
                 <div>
-                    <h2>Flask + React + Docker + GraphQL with Hooks</h2>
                     <Router>
                         <div>
 	                    <Route component={Routes} />
