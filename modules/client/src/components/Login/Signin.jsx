@@ -3,8 +3,9 @@ import React from 'react';
 // Values
 import { Values } from "redux-form-website-template";
 // Local
-import SyncSigninValidationForm from '../../containers/auth/Login/SyncSigninValiationForm.jsx';
+import SyncSigninValidationForm from '../../containers/auth/login/SyncSigninValiationForm.jsx';
 import showResults from '../../showResults.js'
+import '../../styles/redux-form.css'
 
 /**
  * 
