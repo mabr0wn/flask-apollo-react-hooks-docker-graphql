@@ -8,7 +8,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 //Local  
 import App from './components/App.jsx';
-import './styles/index.css';
 
 
 const httpLink = createHttpLink({
