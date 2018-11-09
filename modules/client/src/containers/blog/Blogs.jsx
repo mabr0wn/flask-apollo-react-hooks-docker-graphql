@@ -93,14 +93,14 @@ function Blogs()  {
           On top of that, it provides a great developer experience.`
         },
         { 
-            id: 4, 
-            title: 'GraphQL', 
-            body: `GraphQL is an open-source data query and manipulation 
-            language, and a runtime for fulfilling queries with existing 
-            data. GraphQL was developed internally by Facebook in 2012
-             before being publicly released in 2015.  On 7 November 2018, 
-             the GraphQL project was moved from Facebook to the 
-             newly-established GraphQL foundation.`
+          id: 4, 
+          title: 'GraphQL', 
+          body: `GraphQL is an open-source data query and manipulation 
+          language, and a runtime for fulfilling queries with existing 
+          data. GraphQL was developed internally by Facebook in 2012
+          before being publicly released in 2015.  On 7 November 2018, 
+          the GraphQL project was moved from Facebook to the 
+          newly-established GraphQL foundation.`
         }
     ] 
     // Declare a new state variable, which we'll call "blogs"
@@ -108,7 +108,7 @@ function Blogs()  {
     const BlogContainer = props => (
         <div className="container">
             <div className="title animated fadeInDown" id="title">
-                      Some Dummy Blogs
+                      Dummy Blogs
             </div>
             <br></br>
             <br></br>
