@@ -9,91 +9,112 @@ import {
 	LOAD_BLOGS,
 	LOAD_BLOG,
 	CREATE_BLOG,
-	DELETE_BLOG,
-	UPDATE_BLOG
+	DELETE_BLOG
 } from './types';
 
 
 export const SERVER_URL = 'http://localhost:4000';
 
 export const loadBlogs = () => {
-    const blogs_url = `${SERVER_URL}/blogs/`;
     return (dispatch) => {
-	axios.get(blogs_url)
-		 .then(results => results.json())
-		 .then(data => {
-			if (data.ok === true) {
-				dispatch({
-					type: 'LOAD_BLOGS',
-					payload: data.data
-				});
-			}
-		});
-    };
-}
+		return axios({
+			method: 'get',
+			url: `${SERVER_URL}/blogs`,
+			headers: []
+		  })
+		  .then(results => results.json())
+		  .then(data => {
+			  dispatch({
+				type: LOAD_BLOGS,
+				payload: data.data
+			  })
+		  })
+		}	
+	};
 
-export const loadBlog = (slug) => {
-    return (dispatch) => {    
-	axios.get(`${SERVER_URL}/blog/${slug}/`)
-	     .then(response => {		 
-		 dispatch({
-		     type: LOAD_BLOG,
-		     payload: response
-		 });
-	     });
-    };
-}
+export const loadBlogsSuccess = (blogs)  => {
+	dispatch({
+	  type: LOAD_BLOGS_SUCCESS,
+	  payload: blogs
+	});
+   }
+	  
+export const loadBlogsFailure = (error) => {
+	dispatch({
+	  type: LOAD_BLOGS_FAILURE,
+	  payload: error
+	});
+   }
+	  
+
+export const loadBlog = (id) => {
+	return (dispatch) => {
+		return axios({
+			method: 'get',
+			url: `${ROOT_URL}/blogs/${id}`,
+			headers: []
+		})
+		.then(results => results.json())
+		.then(data => {
+			dispatch({
+				type: LOAD_BLOG,
+				payload: data.id
+			})
+		})
+	}
+  }
 
 
 export const createBlog = (props) => {
-    // Get the saved token from local storage
-    const config = {
-	headers:  { authorization: 'Token ' + localStorage.getItem('token')}
-    };
-
     return (dispatch) => {
-	axios.blog(`${SERVER_URL}/blog/new`, props, config)
-	     .then(response => {
-		 Router.push('/');
-		 dispatch({
-		     type: CREATE_BLOG,
-		     payload: response
-		 });
-	     });
-    }
+		axios({
+			method: 'post',
+			data: props,
+			url: `${SERVER_URL}/blog/new`,
+			headers: { 
+				authorization: 'Token ' + localStorage.getItem('token')
+			}
+		  })
+		  .then(resp => {
+			 Router.push('/');
+			 dispatch({
+			     type: CREATE_BLOG,
+			     payload: resp
+			 });
+		  });
+    	}
 }
 
-
-export const updateBlog = (slug, blog) => {
-    /* Get the saved token from local storage */
-    const config = {
-	headers:  { authorization: 'Token ' + localStorage.getItem('token')}
-    };
-    return (dispatch) => {
-	axios.put(`${SERVER_URL}/blog/${slug}/`, blog, config)
-	     .then(response => {
-		 Router.push('/blog/' + response.data.slug);
-		 dispatch({
-		     type: UPDATE_BLOG,
-		     payload: response
-		 });
-	     });
-    }
-}
-
-export const deleteBlog = (slug) => {
-    const config = {
-	headers:  { authorization: 'Token ' + localStorage.getItem('token')}
-    };
-    
+export const deleteBlog = (id) => {
     return (dispatch) => {    
-	axios.delete(`${SERVER_URL}/blog/${slug}/`, config)
-	     .then(response => {
-		 Router.push('/');		 
-		 dispatch({
-		     type: DELETE_BLOG,
-		     payload: response
-		 });
-	     });
-    };   
+		axios({
+			method: 'delete',
+			url: `${SERVER_URL}/blog/${id}/`,
+			headers:  { 
+				authorization: 'Token ' + localStorage.getItem('token')
+			}
+		})
+		.then(resp => {
+		Router.push('/');		 
+		dispatch({
+		    type: DELETE_BLOG,
+		    payload: resp
+			});
+		  });
+    	};   
 }
+
+export const deleteBlogSuccess = (deletedBlog) => {
+	dispatch({
+	  type: DELETE_BLOG_SUCCESS,
+	  payload: deletedBlog
+	});
+  }
+  
+export const deleteBlogFailure = (resp) => {
+	dispatch({
+	  type: DELETE_BlOG_FAILURE,
+	  payload: resp
+	});
+  }
+  
