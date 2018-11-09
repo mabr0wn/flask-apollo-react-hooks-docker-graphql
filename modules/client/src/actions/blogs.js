@@ -7,9 +7,13 @@ import axios from 'axios';
 // Types
 import {
 	LOAD_BLOGS,
+	LOAD_BLOGS_SUCCESS,
+	LOAD_BLOGS_FAILURE,
 	LOAD_BLOG,
 	CREATE_BLOG,
-	DELETE_BLOG
+	DELETE_BLOG,
+	DELETE_BLOG_SUCCESS,
+	DELETE_BLOG_FAILURE
 } from './types';
 
 
@@ -27,31 +31,35 @@ export const loadBlogs = () => {
 			  dispatch({
 				type: LOAD_BLOGS,
 				payload: data.data
-			  })
-		  })
+			  });
+		  });
 		}	
-	};
+	}
 
 export const loadBlogsSuccess = (blogs)  => {
-	dispatch({
-	  type: LOAD_BLOGS_SUCCESS,
-	  payload: blogs
-	});
-   }
+	return dispatch => {
+		dispatch({
+		  type: LOAD_BLOGS_SUCCESS,
+		  payload: blogs
+		});
+	}
+}
 	  
 export const loadBlogsFailure = (error) => {
-	dispatch({
-	  type: LOAD_BLOGS_FAILURE,
-	  payload: error
-	});
-   }
+	return dispatch => {
+		dispatch({
+		  type: LOAD_BLOGS_FAILURE,
+		  payload: error
+		});
+	}
+}
 	  
 
 export const loadBlog = (id) => {
 	return (dispatch) => {
 		return axios({
 			method: 'get',
-			url: `${ROOT_URL}/blogs/${id}`,
+			url: `${SERVER_URL}/blogs/${id}`,
 			headers: []
 		})
 		.then(results => results.json())
@@ -59,10 +67,10 @@ export const loadBlog = (id) => {
 			dispatch({
 				type: LOAD_BLOG,
 				payload: data.id
-			})
-		})
+			});
+		});
 	}
-  }
+}
 
 
 export const createBlog = (props) => {
@@ -81,8 +89,8 @@ export const createBlog = (props) => {
 			     type: CREATE_BLOG,
 			     payload: resp
 			 });
-		  });
-    	}
+		});
+  }
 }
 
 export const deleteBlog = (id) => {
@@ -100,21 +108,25 @@ export const deleteBlog = (id) => {
 		    type: DELETE_BLOG,
 		    payload: resp
 			});
-		  });
-    	};   
+		});
+  }   
 }
 
 export const deleteBlogSuccess = (deletedBlog) => {
-	dispatch({
-	  type: DELETE_BLOG_SUCCESS,
-	  payload: deletedBlog
-	});
-  }
+	return dispatch => {
+		dispatch({
+		  type: DELETE_BLOG_SUCCESS,
+		  payload: deletedBlog
+		});
+	}
+}
   
 export const deleteBlogFailure = (resp) => {
-	dispatch({
-	  type: DELETE_BlOG_FAILURE,
-	  payload: resp
-	});
-  }
+	return dispatch => {
+		dispatch({
+		  type: DELETE_BLOG_FAILURE,
+		  payload: resp
+		});
+	}
+}
   

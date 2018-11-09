@@ -5,7 +5,7 @@ import {
 } from 'react-redux';
 // Local
 import {  
-    fetchBlogs 
+    loadBlogs 
 } from '../../actions/blogs';
 import Blog from './Blog.jsx';
 
@@ -147,4 +147,4 @@ function mapStateToProps(state) {
  * then connects the actions(fetchBlogs) to the component,
  * allowing me to fire them like "this.props.fetchBlogs()" 
  * */
-export default connect(mapStateToProps, { fetchBlogs })(Blogs);
+export default connect(mapStateToProps, { loadBlogs })(Blogs);
