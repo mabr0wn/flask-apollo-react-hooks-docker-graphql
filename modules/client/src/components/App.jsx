@@ -16,19 +16,25 @@ import store from '../store/store';
  * our application will looks.
  * =======================================================
  */ 
-function App() {
+const App = ()  => {
     return (
         <Provider store={store}>
-            <div className="App">
-                <div className="App-header">
-                    <h2>Flask + React + Docker + GraphQL</h2>
+                <div className="container">
+                    <h2>Flask + React + Docker + GraphQL with Hooks</h2>
+                    <div className="flex-row">
+				        <div className="flex-large">
+					     <h2>Add Blog</h2>
+				        </div>
+				    <div className="flex-large">
+					    <h2>View blogs</h2>
+				    </div>
+			        </div>
                     <Router>
                         <div>
 	                    <Route component={Routes} />
                         </div>
                     </Router>
                 </div>
-            </div>
         </Provider>
     );
 }
