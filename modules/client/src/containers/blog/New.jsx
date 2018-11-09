@@ -12,15 +12,19 @@ function New() {
       other React features without writing a class. 
       They’re currently in React v16.7.0-alpha. ` 
     },
-		{ 
+    { 
       id: 2, 
-      title: 'Craig', 
-      body: 'siliconeidolon' 
+      title: 'Introducing Redux-form', 
+      body: 'Is the form pattern of redux pattern ' 
     },
-		{ 
+    { 
       id: 3, 
-      title: 'Ben', 
-      body: 'benisphere' 
+      title: 'Redux', 
+      body: `Redux is a predictable state container for 
+      JavaScript apps. It helps you write applications 
+      that behave consistently, run in different environments 
+      (client, server, and native), and are easy to test. 
+      On top of that, it provides a great developer experience.`
     },
 	]
   // Declare a new state variable, which we'll call "value"
