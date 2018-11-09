@@ -94,7 +94,7 @@ function Blogs()  {
 
       <div className="jumbotron mb-3 pb-2 pt-3">
         <h1 className="display-4">Blog App</h1>
-        <p className="lead">This is a simple Blog list application that uses localStorage to store data permanently.</p>
+        <p className="lead">This is a simple Blog list dummy data application that uses localStorage to store data permanently.</p>
         <hr className="my-4" />
         {props.blogs.length > 0 ? (
               props.blogs.map(blog => (
