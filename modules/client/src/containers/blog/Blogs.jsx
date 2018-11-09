@@ -87,51 +87,47 @@ function Blogs()  {
           On top of that, it provides a great developer experience.`
         },
     ] 
-    // Declare a new state variable, which we'll call "value"
+    // Declare a new state variable, which we'll call "blogs"
     const [ blogs ] = useState(blogsData)
-    const BlogTable = props => (
-        <table>
-          <thead>
-            <tr>
-              <th>title</th>
-              <th>body</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.blogs.length > 0 ? (
+    const BlogContainer = props => (
+      <div className="container mt-4">
+
+      <div className="jumbotron mb-3 pb-2 pt-3">
+        <h1 className="display-4">Blog App</h1>
+        <p className="lead">This is a simple Blog list application that uses localStorage to store data permanently.</p>
+        <hr className="my-4" />
+        {props.blogs.length > 0 ? (
               props.blogs.map(blog => (
-                <tr key={blog.id}>
-                  <td>{blog.title}</td>
-                  <td>{blog.body}</td>
-                  <td>
-                    <button
-                      // onClick={() => {
-                      //   props.editRow(user)
-                      // }}
-                      className="button muted-button"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      // onClick={() => props.deleteUser(user.id)}
-                      className="button muted-button"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+                <div key={blog.id}>
+                  <h1>{blog.title}</h1>
+                  <p>{blog.body}</p>
+                </div>
               ))
             ) : (
-              <tr>
-                <td colSpan={3}>No blogs</td>
-              </tr>
+              <div>
+                <h1 colSpan={3}>No blogs</h1>
+              </div>
             )}
-          </tbody>
-        </table>
+        <a className="btn btn-danger btn-md" id="destroy" href="{}">Destroy</a>
+        <a className="btn btn-info btn-md" id="edit" href="{}">Edit</a>
+        <hr className="my-4" />
+      </div>
+  
+      <div className="input-group mb-3">
+        <input type="text" className="form-control" placeholder="Type your blog here..." />
+        <div className="input-group-append">
+          <button className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+        </div>
+      </div>
+  
+      <ul className="list-group mb-4">
+      </ul>
+  
+    </div>
     )
     return (
         <div className="container"> 
-            <BlogTable blogs={blogs}/>
+            <BlogContainer blogs={blogs}/>
         </div>
     ); 
 }
