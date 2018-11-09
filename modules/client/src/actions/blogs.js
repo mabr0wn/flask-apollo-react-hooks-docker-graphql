@@ -6,8 +6,8 @@ import {
 import axios from 'axios';
 // Types
 import {
-	FETCH_BLOGS,
-	FETCH_BLOG,
+	LOAD_BLOGS,
+	LOAD_BLOG,
 	CREATE_BLOG,
 	DELETE_BLOG,
 	UPDATE_BLOG
@@ -16,25 +16,28 @@ import {
 
 export const SERVER_URL = 'http://localhost:4000';
 
-export const fetchBlogs = () => {
+export const loadBlogs = () => {
     const blogs_url = `${SERVER_URL}/blogs/`;
     return (dispatch) => {
 	axios.get(blogs_url)
-	     .then(response => {
-		 dispatch({
-		     type: FETCH_BLOGS,
-		     payload: response
-		 });
-	     });
+		 .then(results => results.json())
+		 .then(data => {
+			if (data.ok === true) {
+				dispatch({
+					type: 'LOAD_BLOGS',
+					payload: data.data
+				});
+			}
+		});
     };
 }
 
-export const fetchBlog = (slug) => {
+export const loadBlog = (slug) => {
     return (dispatch) => {    
 	axios.get(`${SERVER_URL}/blog/${slug}/`)
 	     .then(response => {		 
 		 dispatch({
-		     type: FETCH_BLOG,
+		     type: LOAD_BLOG,
 		     payload: response
 		 });
 	     });

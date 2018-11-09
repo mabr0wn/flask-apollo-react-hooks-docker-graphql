@@ -8,8 +8,8 @@ import reduxThunk from 'redux-thunk';
 import { reducer as reduxFormReducer } from 'redux-form';
 // Local
 import { AUTH_USER } from '../actions/types';
-import BlogReducer from '../reducers/reducer_blogs';
-import authReducer from '../reducers/reducer_auth';
+import BlogReducer from '../reducers/blogs';
+import authReducer from '../reducers/auth';
 
 const reducer = combineReducers({
   form: reduxFormReducer, // mounted under "form"
