@@ -9,15 +9,10 @@ import {
     AUTH_USER, 
     NONAUTH_USER, 
     AUTH_ERROR, 
-    FETCH_MESSAGE 
+    LOAD_MESSAGE 
 } from './types';
 
-/**
- * Gives us the host location and split at the colon.
- * `window.location.host` is hostname and port.
- */
-const host = window.location.host.split(':')[0];
-export const BACKEND_URL = 'http://api.' + host + '/api/v1';
+export const SERVER_URL = 'http://localhost:4000';
 /**
  * `signinUser` will require you to sign up with
  * username and password currently using axios to 
@@ -25,9 +20,9 @@ export const BACKEND_URL = 'http://api.' + host + '/api/v1';
  * implement Flask-RESTful API. 
  * 
  */
-export function signinUser({username, password}) {
-    return function(dispatch) {
-        axios.post(`${BACKEND_URL}/auth/`, {username, password})
+export const signinUser = ({username, password}) => {
+    return (dispatch) => {
+        axios.post(`${SERVER_URL}/auth/`, {username, password})
             .then(resp => {
                 dispatch({ type: AUTH_USER })
                 // save the jwt token
@@ -47,9 +42,9 @@ export function signinUser({username, password}) {
  * dispatch fuction and update the user to AUTH_USER
  * and idicate I have signed up.
  */
-export function signupUser({username, password}) {
-    return function(dispatch) {
-	    axios.post(`${BACKEND_URL}/signup`, {username, password})
+export const signupUser = ({username, password}) => {
+    return (dispatch) => {
+	    axios.post(`${SERVER_URL}/signup`, {username, password})
 	        .then(resp => {
 		        dispatch({ type: AUTH_USER});
 		        // save JWT token
@@ -65,7 +60,7 @@ export function signupUser({username, password}) {
     };
 }
 
-export function signoutUser() {
+export const signoutUser = () => {
     // delete token and signout
     localStorage.removeItem('token');
     Router.push('/');
@@ -73,25 +68,25 @@ export function signoutUser() {
         type: NONAUTH_USER
     };
 }
-export function authErr(error) {
+export const authErr = (error) => {
     return {
 	type: AUTH_ERROR,
 	payload: error
     };
 }
 
-export function fetchMessage() {
+export const loadMessage = () => {
     const config = {
 	headers:  { 
         authorization: localStorage.getItem('token')
         }
     };
     
-    return function(dispatch) {
-	    axios.get(BACKEND_URL, config)
+    return (dispatch) => {
+	    axios.get(SERVER_URL, config)
 	        .then(resp => {
 		        dispatch({
-		        type: FETCH_MESSAGE,
+		        type: LOAD_MESSAGE,
 		        payload: resp.data.message
 		        });
 	        });
