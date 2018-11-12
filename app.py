@@ -16,23 +16,23 @@ app.debug = True
 
 default_query = '''
 {
-    allUsers {
-        edges {
-            node {
-                id,
-                username,
-                blog {
-                    id,
-                    title,
-                    body
-                },
-                role {
-                    id,
-                    name
-                }
-            }
+  allUsers {
+    edges {
+      node {
+        id,
+        username,
+        blog {
+          id,
+          title,
+          body
+        },
+        role {
+          id,
+          name
         }
+      }
     }
+  }
 }
 '''.strip()
 

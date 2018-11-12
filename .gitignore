@@ -1,19 +1,26 @@
+# ide
+########
 .idea/
 .vscode/
 
+# python and backend
+####################
 venv/
-
-*.pyc
 __pycahce__/
-
 instance/
-
-.pytest_cache/
-.coverage
 htmlcov/
-
-dist/
-build/
+.coverage/
+.pytest_cache/
+*.pyc
 *.egg-info/
 
+# javscript and builds
+######################
+dist/
+build/
 node_modules/
+
+# Logs and databases #
+######################
+*.log
+*.sqlite3
