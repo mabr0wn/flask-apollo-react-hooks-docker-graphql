@@ -9,7 +9,7 @@ from flask_cors import CORS
 from modules import logger
 from modules.app import create_app
 from modules.app.database import db_session, init_db
-from modules.app.schema import Schema
+from modules.app.schema import schema
 
 app = create_app()
 app.debug = True
@@ -47,7 +47,7 @@ PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
 
 ''' Set the view for Graphiql '''
 view_func = GraphQLView.as_view(
-    'graphql', schema=Schema, graphiql=True)
+    'graphql', schema=schema, graphiql=True)
 
 """ logger object to output info and debug information """
 LOG = logger.get_root_logger(os.environ.get(

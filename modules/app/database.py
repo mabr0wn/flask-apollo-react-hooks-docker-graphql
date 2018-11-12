@@ -27,16 +27,16 @@ def init_db():
     tey will be registered properly on the metadata. Otherwise
     you will have to import them before calling init_db()
     '''
-    from models import Blog, User, Role
+    from .models import Blog, User, Role
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
 
     # Create the fixtures
-    blog1 = Blog(title='First fixture blog!', body='This is the body of the fixture blog1.')
+    blog1 = Blog(title='First fixture blog!', text='This is the text of the fixture blog1.')
     db_session.add(blog1)
-    blog2 = Blog(title='Second fixture blog!', body='This is the body of the fixture blog2.')
+    blog2 = Blog(title='Second fixture blog!', text='This is the text of the fixture blog2.')
     db_session.add(blog2)
-    blog3 = Blog(title='Third fixture blog!', body='This is the body of the fixture blog3.')
+    blog3 = Blog(title='Third fixture blog!', text='This is the text of the fixture blog3.')
     db_session.add(blog3)
 
     admin = Role(name='Administator')
@@ -46,8 +46,8 @@ def init_db():
 
     Matt = User(username='mabrown', blog=blog1, role=admin)
     db_session.add(Matt)
-    John = User(User='jdoe', blog=blog2, role=blogger)
+    John = User(username='jdoe', blog=blog2, role=blogger)
     db_session.add(John)
-    Emily = User(User='emiller', blog=blog3, role=blogger)
+    Emily = User(username='emiller', blog=blog3, role=blogger)
     db_session.add(Emily)
     db_session.commit()

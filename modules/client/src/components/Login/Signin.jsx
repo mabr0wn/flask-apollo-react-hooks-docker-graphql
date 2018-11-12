@@ -8,13 +8,13 @@ import showResults from '../../showResults.js'
 import '../../styles/redux-form.css'
 
 /**
- * 
+ *  onSubmit={showResults}
  */
 function Signin() {
   return (
     <div style={{ padding: 15 }}>
       <h2>Synchronous Validation</h2>
-      <SyncSigninValidationForm onSubmit={showResults}/>
+      <SyncSigninValidationForm/>
       <Values form="syncValidation" />
     </div>
   )
