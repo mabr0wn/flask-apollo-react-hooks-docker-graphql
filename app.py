@@ -24,7 +24,7 @@ default_query = '''
         blog {
           id,
           title,
-          body
+          text
         },
         role {
           id,
