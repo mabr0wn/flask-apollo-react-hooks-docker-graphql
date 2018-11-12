@@ -15,7 +15,7 @@ function Signin() {
     <div style={{ padding: 15 }}>
       <h2>Synchronous Validation</h2>
       <SyncSigninValidationForm/>
-      <Values form="syncValidation" />
+      <Values form="syncValidation"/>
     </div>
   )
 }

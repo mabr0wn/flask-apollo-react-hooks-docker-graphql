@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 const config = {
+    mode: 'development',
     entry:  __dirname + '/src/index.js',
     output: {
         path: __dirname + '/public/dist',
@@ -25,7 +26,7 @@ const config = {
       plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('development')
+                NODE_ENV: JSON.stringify('development')
             }
         }),
         new UglifyJsPlugin({
@@ -41,22 +42,21 @@ const config = {
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
-        mode: 'development',
         contentBase: path.join(__dirname, 'public'),
         host: "localhost",
-        proxy: {
-            '/index.js': {
-                target: 'http://localhost:8080'
-            },
-            '/vendors.js': {
-                target: 'http://localhost:8080'
-            },
-            '/**': {
-                target: 'http://localhost:4000',
-                secure: false,
-                changeOrigin: true
-            }
-        }
+        // proxy: {
+        //     '/index.js': {
+        //         target: 'http://localhost:8080'
+        //     },
+        //     '/vendors.js': {
+        //         target: 'http://localhost:8080'
+        //     },
+        //     '/**': {
+        //         target: 'http://localhost:4000',
+        //         secure: false,
+        //         changeOrigin: true
+        //     }
+        // }
     }
 };
 module.exports = config;

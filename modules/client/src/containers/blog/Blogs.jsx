@@ -6,7 +6,7 @@ import {
 // Local
 import {  
     loadBlogs 
-} from '../../actions/blogs';
+} from '../../actions/blogs.js';
 import Blog from './Blog.jsx';
 import '../../styles/blog.css';
 
@@ -62,7 +62,7 @@ const blogsData = (blogs, props) => {
     });
 }
 
-function Blogs()  { 
+const Blogs = () => { 
     // Dummy Data for blogs testing
     const blogsData = [
         { 
