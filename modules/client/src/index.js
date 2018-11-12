@@ -23,6 +23,7 @@ const client = new ApolloClient({
 
 
 console.log(React.version);
+console.log(process.env);
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App />

@@ -18,8 +18,12 @@ const config = {
             use: 'babel-loader'
           },
           {
-            test: /\.css?/,
-            use: 'css-loader'
+            test: /\.s?css$/, // This will match either .scss or .css
+            use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader'
+            ]
           }
         ]
       },
