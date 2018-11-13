@@ -2,7 +2,7 @@
 import os
 import json
 import datetime
-# PIP imports
+# Flask
 from flask import Flask
 # Sentry
 import sentry_sdk
