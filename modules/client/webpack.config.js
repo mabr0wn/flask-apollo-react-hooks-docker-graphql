@@ -48,19 +48,19 @@ const config = {
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         host: "localhost",
-        // proxy: {
-        //     '/index.js': {
-        //         target: 'http://localhost:8080'
-        //     },
-        //     '/vendors.js': {
-        //         target: 'http://localhost:8080'
-        //     },
-        //     '/**': {
-        //         target: 'http://localhost:4000',
-        //         secure: false,
-        //         changeOrigin: true
-        //     }
-        // }
+        proxy: {
+            '/index.js': {
+                target: 'http://localhost:8080'
+            },
+            '/vendors.js': {
+                target: 'http://localhost:8080'
+            },
+            '/**': {
+                target: 'http://localhost:4000',
+                secure: false,
+                changeOrigin: true
+            }
+        }
     }
 };
 module.exports = config;
