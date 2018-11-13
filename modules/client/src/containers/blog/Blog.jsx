@@ -58,16 +58,16 @@ const loadDraft = (props) => {
     }
 }
 
-// `loadBody()` w/ markdown
-const loadBody = (props) => {
+// `loadText()` w/ markdown
+const loadText = (props) => {
     /* Abbreviate the blog to the number of words passed as a abbreviated prop. */
-    props.body.split(" ").splice(0, props.abbreviated).join(" ");
-    if (props.abbreviated && props.body > props.abbreviated) {
-        props.body = props.abbreviated
+    props.text.split(" ").splice(0, props.abbreviated).join(" ");
+    if (props.abbreviated && props.text > props.abbreviated) {
+        props.text = props.abbreviated
     }
     // use markdown in html
     const md = new Remarkable({html: true});
-    const markdown = md.render(props.body);
+    const markdown = md.render(props.text);
     return (
         // great read `https://zhenyong.github.io/react/tips/dangerously-set-inner-html.html`
         <div dangerouslySetInnerHTML={{__html:markdown}} />
@@ -75,8 +75,8 @@ const loadBody = (props) => {
 }
 
 const loadReadMore = (props) => {
-    props.body.split(" ").splice(0, props.abbreviated).join(" ");
-    if (props.abbreviated && props.body > props.abbreviated) {
+    props.text.split(" ").splice(0, props.abbreviated).join(" ");
+    if (props.abbreviated && props.text > props.abbreviated) {
         return (
         <div>
 		    <Link to={props.link}
@@ -94,7 +94,7 @@ function Blog() {
         {loadEdit()}
         {loadDraft()}
         <div>
-        {loadBody()}
+        {loadText()}
         {loadReadMore()}
         </div>
     </article>  

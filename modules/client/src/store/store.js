@@ -11,6 +11,7 @@ import { AUTH_USER } from '../actions/types';
 import BlogReducer from '../reducers/blogs';
 import authReducer from '../reducers/auth';
 
+// combine all our reducers into one reducers as the app grows this will be useful.
 const reducer = combineReducers({
   form: reduxFormReducer, // mounted under "form"
   blogs: BlogReducer,

@@ -32,12 +32,13 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
     # Create the fixtures
-    blog1 = Blog(title='First fixture blog!', text='This is the text of the fixture blog1.')
+    blog1 = Blog(title='Introducing Hooks', text='Hooks are a new feature proposal that lets you use state and other React features without writing a class. They’re currently in React v16.7.0-alpha.')
     db_session.add(blog1)
-    blog2 = Blog(title='Second fixture blog!', text='This is the text of the fixture blog2.')
+    blog2 = Blog(title='Introducing Redux-form', text='redux-form primarily consists of three things: A Redux reducer that listens to dispatched redux-form actions to maintain your form state in Redux. A React component decorator that wraps your entire form in a Higher Order Component (HOC) and provides functionality via props.')
     db_session.add(blog2)
-    blog3 = Blog(title='Third fixture blog!', text='This is the text of the fixture blog3.')
+    blog3 = Blog(title='Redux', text='Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience.')
     db_session.add(blog3)
+    blog4 = Blog(title='GraphQL', text='GraphQL is an open-source data query and manipulation language, and a runtime for fulfilling queries with existing data. GraphQL was developed internally by Facebook in 2012 before being publicly released in 2015.  On 7 November 2018, the GraphQL project was moved from Facebook to the newly-established GraphQL foundation.')
 
     admin = Role(name='Administator')
     db_session.add(admin)
@@ -50,4 +51,5 @@ def init_db():
     db_session.add(John)
     Emily = User(username='emiller', blog=blog3, role=blogger)
     db_session.add(Emily)
+    Phillip = User(username='pgonzales', blog=blog4, role=blogger)
     db_session.commit()
