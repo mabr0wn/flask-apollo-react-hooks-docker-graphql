@@ -16,11 +16,13 @@ app.debug = True
 
 default_query = '''
 {
-  allUsers {
+  Users {
     edges {
       node {
         id,
         username,
+        email,
+        password
         blog {
           id,
           title,

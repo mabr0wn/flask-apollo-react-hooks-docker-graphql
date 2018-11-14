@@ -33,7 +33,7 @@ $ pbcopy < ~/.ssh/id_rsa.pub
 
 
 ```
-git clone git@github.com:mattd429/flask-blog.git
+git clone git@github.com:mattd429/flask-reactjs-docker-graphql.git
 ```
 
 ### DockerHub
@@ -107,9 +107,36 @@ from flask_cors import CORS
 # Local
 from modules import logger
 from modules.app import create_app
-from modules.app.schema import Schema
+from modules.app.database import db_session, init_db
+from modules.app.schema import schema
 
 app = create_app()
+app.debug = True
+
+default_query = '''
+{
+  Users {
+    edges {
+      node {
+        id,
+        username,
+        email,
+        password
+        blog {
+          id,
+          title,
+          text
+        },
+        role {
+          id,
+          name
+        }
+      }
+    }
+  }
+}
+'''.strip()
+
 
 """
 :ROOT_PATH : Set root path
@@ -121,7 +148,7 @@ PUBLIC_PATH = os.path.join(ROOT_PATH, 'modules', 'client', 'public')
 
 ''' Set the view for Graphiql '''
 view_func = GraphQLView.as_view(
-    'graphql', schema=Schema, graphiql=True)
+    'graphql', schema=schema, graphiql=True)
 
 """ logger object to output info and debug information """
 LOG = logger.get_root_logger(os.environ.get(
@@ -143,6 +170,11 @@ def index():
     """ serve index.html """
     return send_from_directory(PUBLIC_PATH, 'index.html')
 
+@app.route('/login')
+def login():
+    """ serve index.html """
+    return send_from_directory(PUBLIC_PATH, 'index.html')
+
 @app.route('/<path:path>')
 def static_proxy(path):
     """
@@ -151,10 +183,15 @@ def static_proxy(path):
     :return: the directory `public` with filename i.e. 404.html
     """
     file_name = path.split('/')[-1]
-    dir_name = os.path.join('public', '/'.join(path.split('/')[:-1]))
+    dir_name = os.path.join(PUBLIC_PATH, '/'.join(path.split('/')[:-1]))
     return send_from_directory(dir_name, file_name)
 
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
+
 if __name__ == "__main__":
+    init_db()
     CORS(app, resources={r'/graphql': {'origins': '*'}})
     LOG.info('running environment: {}'.format(os.environ.get('ENV')))
     app.config['DEBUG'] = os.environ.get('ENV') == 'development'
@@ -203,11 +240,15 @@ This `logger.py` in the simpliest form will format a nice string format of your 
 
 ```
 Flask==1.0.2
-raven[flask]
-sentry-sdk==0.3.5
-graphql-core==2.1
-flask-graphql==2.0.0
-flask-cors==3.0.6
+Flask-graphql==2.0.0
+Flask-cors==3.0.6
+Flask-RESTful==0.3.6
+Graphql-core==2.1
+Graphene[sqlalchemy]
+graphql-relay
+Raven[flask]
+Sentry-sdk==0.3.5
+SQLAlchemy==1.2.13
 ```
 
 #### Setup Dockerfile:
@@ -227,7 +268,9 @@ ENTRYPOINT ["python","app.py"]
 version: '3.5'
 services:
   flask:
-    build: .
+    build: 
+      context: ./modules/app
+      dockerfile: Dockerfile
     ports:
       - "4000:4000"
     volumes:
@@ -239,7 +282,7 @@ services:
   react:
     build:
       context: ./modules/client
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
     volumes:
       - './modules/client:/usr/src/app'
       - '/usr/src/app/node_modules'
