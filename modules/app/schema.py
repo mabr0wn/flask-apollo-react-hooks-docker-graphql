@@ -37,11 +37,13 @@ class RoleConnection(relay.Connection):
     class Meta:
         node = RoleType
 
-SortEnumUser = utils.sort_enum_for_model(UserModel, 'SortEnumUser',
-    lambda c, d: c.upper() + ('_ASC' if d else '_DESC'))
+
 # Queries
 class Query(graphene.ObjectType):
     node = relay.Node.Field()
+
+    SortEnumUser = utils.sort_enum_for_model(UserModel, 'SortEnumUser',
+                   lambda c, d: c.upper() + ('_ASC' if d else '_DESC'))
     # Allow only single column sorting
     users = SQLAlchemyConnectionField(
         UserConnections,
@@ -64,12 +66,12 @@ class CreateUser(graphene.Mutation):
         password = graphene.String()
 
     def mutate(self, info, username, email, password):
-        newUser = UserModel(username=username, email=email, password=password)
-        db_session.add(newUser)
+        User = UserModel(username=username, email=email, password=password)
+        db_session.add(User)
         db_session.commit()
 
         token = secrets.token_hex(24)
-        return CreateUser(user=newUser, token=token)
+        return CreateUser(user=User, token=token)
 
 class Mutations(graphene.ObjectType):
     createUser = CreateUser.Field()
