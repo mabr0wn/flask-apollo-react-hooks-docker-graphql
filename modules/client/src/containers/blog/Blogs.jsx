@@ -1,20 +1,11 @@
 // React
 import React from 'react';
-import { 
-    connect 
-} from 'react-redux';
 // Apollo
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 // Local
-import {  
-    loadBlogs 
-} from '../../actions/blogs.js';
 import '../../styles/blog.css';
 
-/**
- * 
- */
 const GET_USERS_BLOGS = gql`
   query {
   users {
@@ -37,7 +28,6 @@ const GET_USERS_BLOGS = gql`
   }
 }
 `
-
 const Blogs = () => { 
     return (
         <div className="container"> 
@@ -81,15 +71,4 @@ const Blogs = () => {
     ); 
 }
 
-function mapStateToProps(state) {
-    return { 
-        blogs: state.blogs.all,
-               authenticated: state.auth.authenticated
-            };
-}
-/** connects redux state to the component,
- * allowing to access it with "this.props.blogs"
- * then connects the actions(fetchBlogs) to the component,
- * allowing me to fire them like "this.props.fetchBlogs()" 
- * */
-export default connect(mapStateToProps, { loadBlogs })(Blogs);
+export default Blogs;
