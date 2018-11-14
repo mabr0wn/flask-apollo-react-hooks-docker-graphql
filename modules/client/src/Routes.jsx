@@ -11,7 +11,7 @@ import SignIn from './components/Login/SignIn.jsx';
 
 
 
-function routes() {
+function Routes() {
   return (
      <Router>
         <div>
@@ -24,4 +24,4 @@ function routes() {
     )
 }
 
-export default routes;
+export default Routes;

@@ -11,8 +11,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 // Local
 import SignInValidationForm from '../../../components/Login/SignInValiationForm.jsx';
-import { signIn } from '../actions/auth.js';
-import '../../../styles/redux-form.css.js';
+import { signIn } from '../../../actions/auth.js';
+import '../../../styles/redux-form.css';
 
 
 function SignInForm(props) {

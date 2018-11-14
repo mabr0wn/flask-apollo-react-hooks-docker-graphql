@@ -40,6 +40,8 @@ class RoleConnection(relay.Connection):
     class Meta:
         node = RoleType
 
+SortEnumUser = utils.sort_enum_for_model(UserModel, 'SortEnumUser',
+    lambda c, d: c.upper() + ('_ASC' if d else '_DESC'))
 # Queries
 class Query(graphene.ObjectType):
     node = relay.Node.Field()
@@ -54,6 +56,7 @@ class Query(graphene.ObjectType):
     # Disable sorting over this field
     blogs = SQLAlchemyConnectionField(BlogConnection, sort=None)
 
+# Mutations
 class CreateUser(graphene.Mutation):
     user = graphene.Field(lambda: UserType, description='User created by this mutaiton.')
     token = graphene.String()
@@ -70,13 +73,6 @@ class CreateUser(graphene.Mutation):
 
         token = secrets.token_hex(24)
         return CreateUser(user=newUser, token=token)
-
-
-
-
-SortEnumUser = utils.sort_enum_for_model(UserModel, 'SortEnumUser',
-    lambda c, d: c.upper() + ('_ASC' if d else '_DESC'))
-
 
 class Mutations(graphene.ObjectType):
     createUser = CreateUser.Field()
