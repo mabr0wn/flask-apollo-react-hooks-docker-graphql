@@ -13,7 +13,7 @@ export const signinUser = (token) => {
             history.push('/');
         })
         .catch(() => {
-            dispatch(authErr('User did not authenticate.'))
+            dispatch(authErr('User did not authenticate.'));
        })
     }
   };
@@ -27,7 +27,8 @@ export const signupUser = (token) => {
         })
         .catch(() => {
 		    // if request is bad - add error to the state.
-		    dispatch(authErr('User with this username already exists'));       })
+            dispatch(authErr('User with this username already exists'));       
+        })
     }
 }
   
