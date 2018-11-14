@@ -10,7 +10,6 @@ export const signinUser = (token) => {
         (() => {
             dispatch({type: AUTH_SIGNIN})
             localStorage.setItem('token', token);
-            history.push('/');
         })
         .catch(() => {
             dispatch(authErr('User did not authenticate.'));
@@ -23,7 +22,6 @@ export const signupUser = (token) => {
         (() => {
             dispatch({type: AUTH_SIGNIN})
             localStorage.setItem('token', token);
-            history.push('/');
         })
         .catch(() => {
 		    // if request is bad - add error to the state.
@@ -33,14 +31,9 @@ export const signupUser = (token) => {
 }
   
 export const signoutUser = () => {
-    return (dispatch) => {
-        (() => {
-            dispatch({ type: AUTH_SIGNOUT })
-            localStorage.removeItem('token');
-            history.push('/');
-       })
-    }
-};
+    localStorage.removeItem('token');
+    return {type: AUTH_SIGNOUT}
+    };
 
 export const authErr = (error) => {
     return {
