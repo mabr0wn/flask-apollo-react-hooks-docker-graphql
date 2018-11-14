@@ -41,6 +41,9 @@ const config = {
     resolve: {
         extensions: ['.js', '.jsx', '.css']
     },
+    stats: {
+        warnings: false
+    },
     performance: { 
         hints: false 
     },

@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function SyncSignupValidationForm() {
+function SignUpForm() {
   return (
     <div>
       
     </div>
   )
 }
+
+export default SignUpForm;

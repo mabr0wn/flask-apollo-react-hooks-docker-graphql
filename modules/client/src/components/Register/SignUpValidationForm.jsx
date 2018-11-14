@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function SignUpValidationForm() {
+function SignUpValidationForm() {
   return (
     <div>
       
     </div>
   )
 }
+export default SignUpValidationForm;

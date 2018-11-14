@@ -7,7 +7,7 @@ import {
 import reduxThunk from 'redux-thunk';
 import { reducer as reduxFormReducer } from 'redux-form';
 // Local
-import { AUTH_USER } from '../actions/types';
+import { AUTH_SIGNIN } from '../actions/types';
 import BlogReducer from '../reducers/blogs';
 import authReducer from '../reducers/auth';
 
@@ -29,7 +29,7 @@ const store = createStoreWithMiddleware(
 
 const token = localStorage.getItem('token');
 if (token) {
-    store.dispatch({ type: AUTH_USER });
+    store.dispatch({ type: AUTH_SIGNIN });
 }
 
 export default store;

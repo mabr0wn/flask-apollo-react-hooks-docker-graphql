@@ -11,7 +11,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 // Local
 import SignInValidationForm from '../../../components/Login/SignInValiationForm.jsx';
-import { signIn } from '../../../actions/auth.js';
+import { signinUser } from '../../../actions/auth.js';
 import '../../../styles/redux-form.css';
 
 
@@ -55,7 +55,7 @@ const SignInData = graphql(SIGNIN_MUTATION)(withRouter(SignInForm));
 
 const mapDispatchToProps = (dispatch) => ({
     signInDispatcher(token) {
-      dispatch(signIn(token));
+      dispatch(signinUser(token));
     }
   });
 
