@@ -17,11 +17,12 @@ import '../../styles/blog.css';
  */
 const GET_USERS_BLOGS = gql`
   query {
-  allUsers {
+  users {
     edges {
       node {
         id,
         username,
+        email
         blog {
           id,
           title,
@@ -51,8 +52,8 @@ const Blogs = () => {
               if (error) return <div>THERE WAS AN ERROR</div>
               console.log(data)
               return <div className="blog-post columns-2">
-                    {data.allUsers.edges[0].node.blog.text}
-                    {data.allUsers.edges[0].node.username}
+                    {data.users.edges[0].node.blog.text}
+                    {data.users.edges[0].node.username}
                     </div>
             }}
             </Query>
