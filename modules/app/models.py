@@ -22,6 +22,8 @@ class User(Base):
     __tablename__ = 'employee'
     id = Column(Integer, primary_key=True)
     username = Column(String)
+    email = Column(String)
+    password = Column(String)
     '''
     Use default=func.now() to set the default time,
     of a user to the current time when a user record was

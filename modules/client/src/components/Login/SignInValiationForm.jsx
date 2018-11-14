@@ -42,7 +42,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 )
 
-const SyncSigninValidationForm = (props) => {
+const SignInValidationForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
@@ -61,4 +61,4 @@ export default reduxForm({
   form: 'syncValidation',  // a unique identifier for this form
   validate,                // <--- validation function given to redux-form
   warn                     // <--- warning function given to redux-form
-})(SyncSigninValidationForm)
+})(SignInValidationForm)

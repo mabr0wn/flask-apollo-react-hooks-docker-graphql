@@ -7,8 +7,7 @@ import {
 } from 'react-router-dom';
 // Local
 import Blogs from './containers/blog/Blogs.jsx';
-// import Signin from './components/Login/Signin.jsx';
-import TestSigninFormContainer from './containers/TestSigninFormContainer.jsx'
+import SignIn from './components/Login/SignIn.jsx';
 
 
 
@@ -18,7 +17,7 @@ function routes() {
         <div>
         <Switch>
           <Route exact path="/" component={Blogs} />
-	        <Route path="/login" component={TestSigninFormContainer}/>
+	        <Route path="/login" component={SignIn}/>
         </Switch>
         </div>
       </Router>
