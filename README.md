@@ -293,9 +293,22 @@ services:
       - PORT=3000
 ```
 
-  Now your have a bare minimum application with flask server and react client.  Run the following command below:
+Now your have a bare minimum application with flask server and react client.  Next `cd` into
+our client directory and run `yarn build` which will build webpack into a public directory called `dist`  we place that into our `index.html`:
 
-` $ docker-compose up --build`
+```html
+  <script src="./dist/bundle.js" type="text/javascript"></script>
+
+```
+
+Run the following command below:
+
+```source-shell
+yarn build
+docker-compose up --build
+```
+
+
 
 Your output should look something like this:
 
