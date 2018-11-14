@@ -6,11 +6,8 @@ import graphene
 from graphene import relay, String
 from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType, utils
 # Local
-from .utils import input_to_dictionary
-from .models import Blog as BlogModel
-from .models import User as UserModel
-from .models import Role as RoleModel
 from .database import db_session
+from .models import Blog as BlogModel, User as UserModel, Role as RoleModel
 
 class BlogType(SQLAlchemyObjectType):
     class Meta:
