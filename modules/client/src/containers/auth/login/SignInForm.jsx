@@ -1,17 +1,12 @@
 // React
 import React, { useState }from 'react';
-import { 
-	withRouter
-} from 'react-router-dom';
 // Redux
 import { Values } from "redux-form-website-template";
 // Apollo-GraphQL
-import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 // Local
 import SignInValidationForm from '../../../components/Login/SignInValiationForm.jsx';
-import { signinUser } from '../../../actions/auth.js';
 import '../../../styles/redux-form.css';
 
 
@@ -51,17 +46,6 @@ const SIGNIN_MUTATION = gql`
         }
     }
 `
-const SignInData = graphql(SIGNIN_MUTATION)(withRouter(SignInForm));
-
-const mapDispatchToProps = (dispatch) => ({
-    signInDispatcher(token) {
-      dispatch(signinUser(token));
-    }
-  });
-
-const SignInDataAndHook = connect(
-    null,
-    mapDispatchToProps
-)(SignInData);
-
-export default SignInDataAndHook;
+export default compose(
+    graphql(SIGNIN_MUTATION, {name: 'signinMutation'})
+)(SignInForm)

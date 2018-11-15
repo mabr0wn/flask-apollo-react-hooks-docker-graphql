@@ -6,13 +6,10 @@ import {
 } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { reducer as reduxFormReducer } from 'redux-form';
-// Local
-import authReducer from '../reducers/auth';
 
 // combine all our reducers into one reducers as the app grows this will be useful.
 const reducer = combineReducers({
-  form: reduxFormReducer, // mounted under "form"
-  auth: authReducer
+  form: reduxFormReducer // mounted under "form"
 });
 
 // Connect reduxThunk to middleware so I could dispatch actions.
