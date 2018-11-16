@@ -8,6 +8,8 @@ import {
 // Local
 import Blogs from './containers/blog/Blogs.jsx';
 import SignIn from './components/Login/SignIn.jsx';
+import SignUp from './components/Register/SignUp.jsx';
+
 
 
 
@@ -18,6 +20,7 @@ function Routes() {
         <Switch>
           <Route exact path="/" component={Blogs} />
 	        <Route path="/login" component={SignIn}/>
+          <Route path="/register" component={SignUp}/>
         </Switch>
         </div>
       </Router>

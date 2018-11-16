@@ -65,48 +65,28 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
  * 
  */
 function SignInForm(props) {
-    const [ createUser, setCreateUser ] = useState(true)
+    const [ login, setLogin ] = useState(true)
     const [ username, setUsername ] = useState('')
-    const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
       }
     const handleSubmit = async() => {
         let auth_token = ''
-        if (createUser){
           const result = await props.signinMutation({
             variables: {
               username,
-              email,
               password
             }
           })
-          console.log('createUser results => ', result)
-          const { token } = result.data.createUser
+          console.log('Login results => ', result)
+          const { token } = result.data.login
           auth_token = token
           saveUserData(token)
-        } else {
-          const result = await props.signupMutation({
-            variables: {
-              username,
-              email,
-              password
-            }
-          })
-          console.log('signupResult => ', result)
-          const { token } = result.data.createUser
-          auth_token = token
-          saveUserData(token)
-        }
         if (auth_token.length > 0){
             console.log('ok');
         }
       }
-    //
-    const handleEmailChange = (e) => {
-          setEmail(e.target.value);
-    }
     //
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -128,14 +108,6 @@ function SignInForm(props) {
           component={renderField}
         />
         <Field
-          name="email" 
-          type="text"
-          label="email"
-          value={email}
-          onChange={handleEmailChange}
-          component={renderField}
-        />
-        <Field
           name="password"
           type="password"
           label="password"
@@ -145,12 +117,13 @@ function SignInForm(props) {
         />
     <div >
       <div type="submit" disabled={submitting || pristine || invalid} onClick={() => handleSubmit()}>
-        {createUser ? 'login' : 'create account'}
+        {login ? 'login' : ''}
       </div>
       <div
         type="button"
-        onClick={() => setCreateUser({ createUser: !createUser })}>
-        {createUser
+        disabled={pristine || submitting}
+        onClick={() => setLogin({login: !login })}>
+          {login
           ? 'need to create an account?'
           : 'already have an account?'}
       </div>
@@ -158,22 +131,13 @@ function SignInForm(props) {
     </form>
     )
 }
-/**
- * 
- */
-const SIGNUP_MUTATION = gql`
-  mutation SignUpMutation($email: String!, $password: String!, $name:String!){
-    createUser(email: $email, password: $password, name: $name){
-      token
-    }
-  }
-`
+
 /**
  * 
  */
 const SIGNIN_MUTATION = gql`
-  mutation SigninMutation($username: String!, $email: String!, $password: String!){
-    createUser(username: $username, email: $email, password: $password){
+  mutation SigninMutation($username: String!, $password: String!){
+    login(username: $username, password: $password){
         token
     }
   }
@@ -182,7 +146,6 @@ const SIGNIN_MUTATION = gql`
  * 
  */
 export default compose(
-    graphql(SIGNUP_MUTATION, {name: 'signupMutation'}),
     graphql(SIGNIN_MUTATION, {name: 'signinMutation'}),
     reduxForm({
         form: 'syncValidation',  // a unique identifier for this form

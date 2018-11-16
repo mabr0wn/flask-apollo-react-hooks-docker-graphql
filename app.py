@@ -76,6 +76,12 @@ def login():
     """ serve index.html """
     return send_from_directory(PUBLIC_PATH, 'index.html')
 
+@app.route('/register')
+def register():
+    """ serve route to register to index.html """
+    return send_from_directory(PUBLIC_PATH, 'index.html')
+
+
 @app.route('/<path:path>')
 def static_proxy(path):
     """
