@@ -220,10 +220,11 @@ form>div>div.async-validating:after {
 	width: 16px;
 	background-image: url(data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==)
 }
-form>div button {
+form>div {
 	margin: 10px
 }
-form>div button[type=button] {
+form>div [type=button] {
+	max-width: 17rem;
 	white-space: nowrap;
 	display: inline-block;
 	border-radius: 5px;
@@ -234,23 +235,24 @@ form>div button[type=button] {
 	border: 1px solid #d5d5d5;
 	color: #000
 }
-form>div button[type=button]:visited {
+form>div [type=button]:visited {
 	color: #fff
 }
-form>div button[type=button]:hover {
+form>div [type=button]:hover {
 	background-image: linear-gradient(#fff, #eee)
 }
-form>div button[type=button]:hover[disabled] {
+form>div [type=button]:hover[disabled] {
 	background-image: linear-gradient(#fff, #d5d5d5)
 }
-form>div button[type=button]:visited {
+form>div [type=button]:visited {
 	color: #000
 }
-form>div button[type=button][disabled] {
+form>div [type=button][disabled] {
 	opacity: .6;
 	cursor: not-allowed
 }
-form>div button[type=submit] {
+form>div [type=submit] {
+	max-width: 7rem;
 	white-space: nowrap;
 	display: inline-block;
 	border-radius: 5px;
@@ -260,26 +262,26 @@ form>div button[type=submit] {
 	background-image: linear-gradient(#4f93ce, #285f8f);
 	border: 1px solid #285f8f
 }
-form>div button[type=submit]:visited {
+form>div [type=submit]:visited {
 	color: #fff
 }
-form>div button[type=submit]:hover {
+form>div [type=submit]:hover {
 	background-image: linear-gradient(#63a0d4, #337ab7)
 }
-form>div button[type=submit]:hover[disabled] {
+form>div [type=submit]:hover[disabled] {
 	background-image: linear-gradient(#4f93ce, #285f8f)
 }
-form>div button[type=submit]:visited {
+form>div [type=submit]:visited {
 	color: #000
 }
-form>div button[type=submit][disabled] {
+form>div [type=submit][disabled] {
 	opacity: .6;
 	cursor: not-allowed
 }
-form>div button[type=submit].submitting {
+form>div [type=submit].submitting {
 	cursor: wait!important
 }
-form>div button[type=submit]:before {
+form>div [type=submit]:before {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;
@@ -289,11 +291,11 @@ form>div button[type=submit]:before {
 	content: '\F1D8';
 	margin-right: 5px
 }
-form>div button[type=submit].next:before {
+form>div [type=submit].next:before {
 	content: '';
 	margin-right: 0
 }
-form>div button[type=submit].next:after {
+form>div [type=submit].next:after {
 	content: '\F054';
 	margin-left: 5px
 }
@@ -338,7 +340,7 @@ form>strong:before {
 	content: '\F06A';
 	margin-right: 5px
 }
-form button {
+form {
 	cursor: pointer
 }
 form ul {
@@ -460,23 +462,23 @@ form ul li>div button[type=button] {
 	border: 1px solid #d5d5d5;
 	color: #000
 }
-form ul li>div button[type=button]:visited {
+form ul li>div [type=button]:visited {
 	color: #fff
 }
-form ul li>div button[type=button]:hover {
+form ul li>div [type=button]:hover {
 	background-image: linear-gradient(#fff, #eee)
 }
-form ul li>div button[type=button]:hover[disabled] {
+form ul li>div [type=button]:hover[disabled] {
 	background-image: linear-gradient(#fff, #d5d5d5)
 }
-form ul li>div button[type=button]:visited {
+form ul li>div [type=button]:visited {
 	color: #000
 }
-form ul li>div button[type=button][disabled] {
+form ul li>div [type=button][disabled] {
 	opacity: .6;
 	cursor: not-allowed
 }
-form ul li>div button[type=submit] {
+form ul li>div [type=submit] {
 	white-space: nowrap;
 	display: inline-block;
 	border-radius: 5px;
@@ -486,26 +488,26 @@ form ul li>div button[type=submit] {
 	background-image: linear-gradient(#4f93ce, #285f8f);
 	border: 1px solid #285f8f
 }
-form ul li>div button[type=submit]:visited {
+form ul li>div [type=submit]:visited {
 	color: #fff
 }
-form ul li>div button[type=submit]:hover {
+form ul li>div [type=submit]:hover {
 	background-image: linear-gradient(#63a0d4, #337ab7)
 }
-form ul li>div button[type=submit]:hover[disabled] {
+form ul li>div [type=submit]:hover[disabled] {
 	background-image: linear-gradient(#4f93ce, #285f8f)
 }
-form ul li>div button[type=submit]:visited {
+form ul li>div [type=submit]:visited {
 	color: #000
 }
-form ul li>div button[type=submit][disabled] {
+form ul li>div [type=submit][disabled] {
 	opacity: .6;
 	cursor: not-allowed
 }
-form ul li>div button[type=submit].submitting {
+form ul li>div [type=submit].submitting {
 	cursor: wait!important
 }
-form ul li>div button[type=submit]:before {
+form ul li>div [type=submit]:before {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;
@@ -515,15 +517,15 @@ form ul li>div button[type=submit]:before {
 	content: '\F1D8';
 	margin-right: 5px
 }
-form ul li>div button[type=submit].next:before {
+form ul li>div [type=submit].next:before {
 	content: '';
 	margin-right: 0
 }
-form ul li>div button[type=submit].next:after {
+form ul li>div [type=submit].next:after {
 	content: '\F054';
 	margin-left: 5px
 }
-form ul li>div button.previous:before, form ul li>div button[type=submit].next:after {
+form ul li>div previous:before, form ul li>div [type=submit].next:after {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;
@@ -548,7 +550,7 @@ form ul li>div button.previous:before {
 		flex-flow: column-reverse
 	}
 }
-form ul li>button {
+form ul li> {
 	float: right;
 	white-space: nowrap;
 	display: inline-block;
