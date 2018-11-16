@@ -72,7 +72,7 @@ function SignInForm(props) {
     const saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
       }
-    const confirm = async() => {
+    const handleSubmit = async() => {
         let auth_token = ''
         if (createUser){
           const result = await props.signinMutation({
@@ -82,7 +82,7 @@ function SignInForm(props) {
               password
             }
           })
-          console.log('logingResult => ', result)
+          console.log('createUser results => ', result)
           const { token } = result.data.createUser
           auth_token = token
           saveUserData(token)
@@ -144,7 +144,7 @@ function SignInForm(props) {
           component={renderField}
         />
     <div >
-      <div type="submit" disabled={submitting || pristine || invalid} onClick={() => confirm()}>
+      <div type="submit" disabled={submitting || pristine || invalid} onClick={() => handleSubmit()}>
         {createUser ? 'login' : 'create account'}
       </div>
       <div
