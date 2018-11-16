@@ -4,6 +4,8 @@ import React from 'react';
 import { Values } from "redux-form-website-template";
 // Local
 import SignInForm from '../../containers/auth/login/SignInForm.jsx'
+import showResults from '../../showResults';
+
 
 /**
  *  
@@ -11,7 +13,7 @@ import SignInForm from '../../containers/auth/login/SignInForm.jsx'
 function SignIn() {
   return (
     <div style={{ padding: 150 }}>
-      <SignInForm />
+      <SignInForm onSubmit={showResults}/>
       <Values form="syncValidation" />
     </div>
   )
