@@ -15,8 +15,8 @@ import {
 } from 'react-router-dom';
 // Local
 import Blogs from './containers/blog/Blogs.jsx';
-import SignIn from './components/Login/SignIn.jsx';
-import SignUp from './components/Register/SignUp.jsx';
+import SignIn from './components/auth/login/SignIn.jsx';
+import SignUp from './components/auth/register/SignUp.jsx';
 import Footer from './components/core/Footer';
 
 function Routes() {

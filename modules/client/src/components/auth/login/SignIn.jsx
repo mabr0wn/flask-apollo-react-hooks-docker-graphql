@@ -3,8 +3,8 @@ import React from 'react';
 // Redux
 import { Values } from "redux-form-website-template";
 // Local
-import SignInForm from '../../containers/auth/login/SignInForm.jsx'
-import showResults from '../../showResults';
+import SignInForm from '../../../containers/auth/login/SignInForm.jsx'
+import showResults from '../../../showResults';
 
 
 /**
