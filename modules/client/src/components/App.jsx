@@ -9,8 +9,6 @@ import { Provider } from 'react-redux';
 // Local
 import Routes from '../Routes.jsx';
 import store from '../store/store';
-import Navigation from './core/Navigation.jsx';
-import Footer from './core/Footer.jsx';
 
 /*
  * =======================================================
@@ -20,19 +18,17 @@ import Footer from './core/Footer.jsx';
  * =======================================================
  */ 
 const App = ()  => {
-    return (
-        <Provider store={store}>
-                <div>
-                    <Router>
-                        <div>
-                        <Navigation></Navigation>
-	                    <Route component={Routes} />
-                        <Footer></Footer>
-                        </div>
-                    </Router>
-                </div>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <div>
+        <Router>
+          <div>
+          <Route component={Routes} />
+          </div>
+        </Router>
+      </div>
+    </Provider>
+  );
 }
 
 export default App;

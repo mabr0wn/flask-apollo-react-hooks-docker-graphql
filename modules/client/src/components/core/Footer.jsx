@@ -1,5 +1,9 @@
+// React
 import React from 'react';
-import { Grid, Nav } from 'react-bootstrap';
+import { 
+  Grid, 
+  Nav 
+} from 'react-bootstrap';
 
 function Footer(/*props*/) {
   return (
@@ -8,12 +12,12 @@ function Footer(/*props*/) {
         <Nav justified>
           <Nav
             eventKey={1}>
-            Privacy policy
+            MIT LICENSE
           </Nav>
           <Nav
             eventKey={2}
             title="Item">
-            Terms & Conditions
+            <a href="https://opensource.org/licenses/MIT" target="blank">Terms & Conditions</a>
           </Nav>
           <Nav
             eventKey={2}>

@@ -7,8 +7,6 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 // Local
 import '../../../styles/redux-form.css';
-// Constant
-export const AUTH_TOKEN = 'auth-token'
 
 /**
  * 
@@ -53,10 +51,6 @@ const warn = values => {
     return warnings
     }
 
-/**
- * 
- * @param {*} param 
- */
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
     <div>
       <label>{label}</label>
@@ -66,44 +60,31 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
       </div>
     </div>
   )
+
 /**
  * React Hooks for state, `SignUpForm()` allows a given end user 
  * to sign up using the redux-form pattern.  can track the process
  * of any errors, warnings, or success.  created token for allow the 
  * the customer to stay authed while visited the web app.
  */
-function SignUpForm(props) {
-    // eslint-disable-next-line
-    const [ createUser, setCreateUser ] = useState(true)
+function SignUnForm(props) {
     const [ username, setUsername ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
-    const [ confirmPassword, setConfirmPassword ] = useState('')
 
-    const saveUserData = token => {
-        localStorage.setItem(AUTH_TOKEN, token)
-      }
     const handleSubmit = () => {
-        let auth_token = ''
-          const result = props.signupMutation({
-            variables: {
-              username,
-              email,
-              password
-            }
-          })
-          console.log('createUser results => ', result)
-          const { token } = result.data.createUser
-          auth_token = token
-          saveUserData(token)
-         
-        if (auth_token.length > 0){
-            console.log('ok');
-        }
+        const result = props.registerMutation({
+          variables: {
+            username,
+            email,
+            password
+          }
+        })
+        console.log('Register result => ', result)
       }
     // function for handling email change
     const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+          setEmail(e.target.value);
     }
     // function for handling username change
     const handleUsernameChange = (e) => {
@@ -112,9 +93,6 @@ function SignUpForm(props) {
     // function for handling password change
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
-    }
-    const handleConfirmPasswordChange = (e) => {
-        setConfirmPassword(e.target.value);
     }
     // validations...
     const { pristine, invalid, reset, submitting } = props
@@ -144,23 +122,12 @@ function SignUpForm(props) {
           onChange={handlePasswordChange}
           component={renderField}
         />
-        <Field
-          name="confirm password"
-          type="password"
-          label="confirm password"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          component={renderField}
-        />
     <div >
-      <div 
-        type="submit" 
-        disabled={submitting || pristine || invalid} 
-        onClick={() => handleSubmit()}>
-        {createUser ? 'Create' : ''}
+      <div type="submit2" disabled={submitting || pristine || invalid} onClick={() => handleSubmit()}>
+        Register
       </div>
       <div
-        type="button"
+        type="button2"
         disabled={pristine || submitting}
         onClick={reset}>
         Clear Values
@@ -172,22 +139,21 @@ function SignUpForm(props) {
 /**
  * GraphQL mutation for creating a user.
  */
-const SIGNUP_MUTATION = gql`
-  mutation SignUpMutation($email: String!, $password: String!, $name:String!){
-    createUser(email: $email, password: $password, name: $name){
-      token
+const REGISTER_MUTATION = gql`
+  mutation RegisterMutation($username: String!, $email: String!, $password: String!){
+    createUser(username: $username, email: $email, password: $password){
+        token
     }
   }
 `
-
 /**
  * compose to combine multiple exports...
  */
 export default compose(
-    graphql(SIGNUP_MUTATION, {name: 'signupMutation'}),
+    graphql(REGISTER_MUTATION, {name: 'registerMutation'}),
     reduxForm({
         form: 'syncValidation',  // a unique identifier for this form
         validate,                // <--- validation function given to redux-form
         warn                     // <--- warning function given to redux-form
     })
-)(SignUpForm)
+)(SignUnForm)

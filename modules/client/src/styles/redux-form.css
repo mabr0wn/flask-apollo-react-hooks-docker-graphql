@@ -165,7 +165,6 @@ form>div>label {
 	margin-right: 10px;
 	min-width: 150px;
 	text-align: right;
-	padding: 6px 9px
 }
 form>div>div {
 	-ms-flex: 1;
@@ -224,7 +223,7 @@ form>div {
 	margin: 10px
 }
 form>div [type=button] {
-	max-width: 17rem;
+	max-width: 20rem;
 	white-space: nowrap;
 	display: inline-block;
 	border-radius: 5px;
@@ -251,8 +250,40 @@ form>div [type=button][disabled] {
 	opacity: .6;
 	cursor: not-allowed
 }
+/** 
+
+*/
+form>div [type=button2] {
+	max-width: 15rem;
+	white-space: nowrap;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 10px 15px;
+	font-size: 20px;
+	color: #fff;
+	background-image: linear-gradient(#fff, #d5d5d5);
+	border: 1px solid #d5d5d5;
+	color: #000
+}
+form>div [type=button2]:visited {
+	color: #fff
+}
+form>div [type=button2]:hover {
+	background-image: linear-gradient(#fff, #eee)
+}
+form>div [type=button2]:hover[disabled] {
+	background-image: linear-gradient(#fff, #d5d5d5)
+}
+form>div [type=button2]:visited {
+	color: #000
+}
+form>div [type=button2][disabled] {
+	opacity: .6;
+	cursor: not-allowed
+}
+
 form>div [type=submit] {
-	max-width: 7rem;
+	max-width: 10rem;
 	white-space: nowrap;
 	display: inline-block;
 	border-radius: 5px;
@@ -300,6 +331,65 @@ form>div [type=submit].next:after {
 	margin-left: 5px
 }
 form>div button.previous:before, form>div button[type=submit].next:after {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+
+/** **/
+
+form>div [type=submit2] {
+	max-width: 13rem;
+	white-space: nowrap;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 10px 15px;
+	font-size: 20px;
+	color: #fff;
+	background-image: linear-gradient(#4f93ce, #285f8f);
+	border: 1px solid #285f8f
+}
+form>div [type=submit2]:visited {
+	color: #fff
+}
+form>div [type=submit2]:hover {
+	background-image: linear-gradient(#63a0d4, #337ab7)
+}
+form>div [type=submit2]:hover[disabled] {
+	background-image: linear-gradient(#4f93ce, #285f8f)
+}
+form>div [type=submit2]:visited {
+	color: #000
+}
+form>div [type=submit2][disabled] {
+	opacity: .6;
+	cursor: not-allowed
+}
+form>div [type=submit2].submitting {
+	cursor: wait!important
+}
+form>div [type=submit2]:before {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	content: '\F1D8';
+	margin-right: 5px
+}
+form>div [type=submit2].next:before {
+	content: '';
+	margin-right: 0
+}
+form>div [type=submit2].next:after {
+	content: '\F054';
+	margin-left: 5px
+}
+form>div button.previous:before, form>div button[type=submit2].next:after {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;

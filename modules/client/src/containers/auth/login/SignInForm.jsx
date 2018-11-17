@@ -123,8 +123,8 @@ function SignInForm(props) {
         type="button"
         onClick={() => setLogin({login: !login })}>
           {login
-          ? 'need to create an account?'
-          : 'already have an account?'}
+          ? 'create an account?'
+          : ''}
       </div>
     </div>
     </form>
