@@ -95,7 +95,7 @@ function SignUpForm(props) {
       }
     //
     const handleEmailChange = (e) => {
-          setEmail(e.target.value);
+        setEmail(e.target.value);
     }
     //
     const handleUsernameChange = (e) => {
@@ -106,8 +106,8 @@ function SignUpForm(props) {
         setPassword(e.target.value);
     }
     const handleConfirmPasswordChange = (e) => {
-      setConfirmPassword(e.target.value);
-  }
+        setConfirmPassword(e.target.value);
+    }
     //
     const { pristine, invalid, reset, submitting } = props
     return (
