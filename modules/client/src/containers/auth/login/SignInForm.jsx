@@ -121,7 +121,6 @@ function SignInForm(props) {
       </div>
       <div
         type="button"
-        disabled={pristine || submitting}
         onClick={() => setLogin({login: !login })}>
           {login
           ? 'need to create an account?'
