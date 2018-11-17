@@ -87,15 +87,15 @@ function SignInForm(props) {
             console.log('ok');
         }
       }
-    //
+    // function for handling username change
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     }
-    //
+    // function for password change
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
-    //
+    // validations
     const { pristine, invalid, submitting } = props
     return (
     <form>
