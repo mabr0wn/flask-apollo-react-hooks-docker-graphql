@@ -55,14 +55,14 @@ const config = {
             '/index.js': {
                 target: 'http://localhost:8080'
             },
-            '/vendors.js': {
-                target: 'http://localhost:8080'
-            },
             '/**': {
                 target: 'http://localhost:4000',
                 secure: false,
                 changeOrigin: true
             }
+        },
+        stats: {
+            warnings: false
         }
     }
 };

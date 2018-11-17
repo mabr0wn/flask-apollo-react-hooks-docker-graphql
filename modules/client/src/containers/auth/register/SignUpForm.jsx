@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 // Local
-import '../../../styles/redux-form.css';
+import '../../../styles/redux-form.min.css';
 
 /**
  * 
@@ -84,7 +84,7 @@ function SignUnForm(props) {
       }
     // function for handling email change
     const handleEmailChange = (e) => {
-          setEmail(e.target.value);
+        setEmail(e.target.value);
     }
     // function for handling username change
     const handleUsernameChange = (e) => {

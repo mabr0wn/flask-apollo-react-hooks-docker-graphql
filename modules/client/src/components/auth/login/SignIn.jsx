@@ -6,10 +6,6 @@ import { Values } from "redux-form-website-template";
 import SignInForm from '../../../containers/auth/login/SignInForm.jsx'
 import showResults from '../../../showResults';
 
-
-/**
- *  
- */
 function SignIn() {
   return (
     <div style={{ padding: 150 }}>

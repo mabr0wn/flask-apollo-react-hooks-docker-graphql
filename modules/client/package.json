@@ -1,8 +1,8 @@
 {
-  "name": "flask-python",
-  "version": "1.0.0",
-  "description": "FullStack Flask, React, Docker, AWS",
-  "repository": "git@github.com:mattd429/flask-blog.git",
+  "name": "flask-apollo-react-hooks-docker-graphql",
+  "version": "2.1.3",
+  "description": "FullStack Flask, React, Docker, GraphQL",
+  "repository": "git@github.com:mattd429/flask-apollo-react-hooks-docker-graphql.git",
   "author": "Matthew Brown <mattd429@gmail.com>",
   "license": "MIT",
   "scripts": {
