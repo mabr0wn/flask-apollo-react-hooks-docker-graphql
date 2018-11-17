@@ -11,7 +11,6 @@ function Navigation() {
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-<p>test</p>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
