@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 // Local
 import Routes from '../Routes.jsx';
 import store from '../store/store';
+import Navigation from './core/Navigation.jsx';
 import Footer from './core/Footer.jsx';
 
 /*
@@ -24,6 +25,7 @@ const App = ()  => {
                 <div>
                     <Router>
                         <div>
+                        <Navigation></Navigation>
 	                    <Route component={Routes} />
                         <Footer></Footer>
                         </div>
