@@ -14,7 +14,7 @@ import {
     Switch
 } from 'react-router-dom';
 // Local
-import Blogs from './containers/blog/Blogs.jsx';
+import Home from './components/core/Home.jsx';
 import SignIn from './components/auth/login/SignIn.jsx';
 import SignUp from './components/auth/register/SignUp.jsx';
 import Footer from './components/core/Footer';
@@ -26,7 +26,7 @@ function Routes() {
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">Blogs</a>
+              <a href="/">Home</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -46,7 +46,7 @@ function Routes() {
           </Navbar.Collapse>
         </Navbar>
         <Switch>
-          <Route exact path="/" component={Blogs} />
+          <Route exact path="/" component={Home} />
 	        <Route path="/login" component={SignIn}/>
           <Route path="/register" component={SignUp}/>
         </Switch>
