@@ -75,9 +75,9 @@ function SignUpForm(props) {
     const saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
       }
-    const handleSubmit = async() => {
+    const handleSubmit = () => {
         let auth_token = ''
-          const result = await props.signupMutation({
+          const result = props.signupMutation({
             variables: {
               username,
               email,

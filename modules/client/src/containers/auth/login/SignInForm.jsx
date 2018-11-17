@@ -71,9 +71,9 @@ function SignInForm(props) {
     const saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
       }
-    const handleSubmit = async() => {
+    const handleSubmit = () => {
         let auth_token = ''
-          const result = await props.signinMutation({
+          const result = props.signinMutation({
             variables: {
               username,
               password
