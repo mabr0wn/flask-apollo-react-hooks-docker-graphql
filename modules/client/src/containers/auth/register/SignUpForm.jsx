@@ -12,7 +12,10 @@ export const AUTH_TOKEN = 'auth-token'
 
 /**
  * 
- * @param {*} values 
+ * @param {*} values the required input from
+ * the end user when signing up fora form.  if the 
+ * user does not meet the requirements they will be prompted with
+ * a returned string error.
  */
 const validate = values => {
     const errors = {}
@@ -38,7 +41,9 @@ const validate = values => {
 
 /**
  * 
- * @param {*} values 
+ * @param {*} values the user will be prompted with
+ * with a warning message which will still allow them to
+ * proceed.
  */
 const warn = values => {
     const warnings = {}
@@ -50,7 +55,7 @@ const warn = values => {
 
 /**
  * 
- * @param {*} param0 
+ * @param {*} param 
  */
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
     <div>
@@ -62,7 +67,10 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     </div>
   )
 /**
- * 
+ * React Hooks for state, `SignUpForm()` allows a given end user 
+ * to sign up using the redux-form pattern.  can track the process
+ * of any errors, warnings, or success.  created token for allow the 
+ * the customer to stay authed while visited the web app.
  */
 function SignUpForm(props) {
     // eslint-disable-next-line
@@ -93,22 +101,22 @@ function SignUpForm(props) {
             console.log('ok');
         }
       }
-    //
+    // function for handling email change
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }
-    //
+    // function for handling username change
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     }
-    //
+    // function for handling password change
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
     }
-    //
+    // validations...
     const { pristine, invalid, reset, submitting } = props
     return (
     <form>
@@ -162,7 +170,7 @@ function SignUpForm(props) {
     )
 }
 /**
- * 
+ * GraphQL mutation for creating a user.
  */
 const SIGNUP_MUTATION = gql`
   mutation SignUpMutation($email: String!, $password: String!, $name:String!){
@@ -173,7 +181,7 @@ const SIGNUP_MUTATION = gql`
 `
 
 /**
- * 
+ * compose to combine multiple exports...
  */
 export default compose(
     graphql(SIGNUP_MUTATION, {name: 'signupMutation'}),
