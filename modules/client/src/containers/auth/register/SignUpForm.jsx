@@ -85,7 +85,7 @@ function SignUnForm(props) {
       } catch (err) {
         console.error('Error', err);
       }
-      }
+    }
     // function for handling email change
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
