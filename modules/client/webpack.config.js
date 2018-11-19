@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
     mode: 'development',
-    entry:  __dirname + '/src/index.js',
+    entry:  ['babel-polyfill', __dirname + '/src/index.js'],
     output: {
         path: __dirname + '/public/dist',
         filename: 'bundle.js',

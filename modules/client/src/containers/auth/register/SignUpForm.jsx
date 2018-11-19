@@ -72,8 +72,9 @@ function SignUnForm(props) {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
 
-    const handleSubmit = () => {
-        const result = props.registerMutation({
+    const handleSubmit = async() => {
+      try {
+        const result = await props.registerMutation({
           variables: {
             username,
             email,
@@ -81,6 +82,9 @@ function SignUnForm(props) {
           }
         })
         console.log('Register result => ', result)
+      } catch (err) {
+        console.error('Error', err);
+      }
       }
     // function for handling email change
     const handleEmailChange = (e) => {
