@@ -73,8 +73,30 @@ class CreateUser(graphene.Mutation):
         token = secrets.token_hex(24)
         return CreateUser(user=User, token=token)
 
+class Login(graphene.Mutation):
+    user = graphene.Field(lambda: UserType, description='Login the authenticated user.')
+    token = graphene.String()
+
+    class Arguments:
+        username = graphene.String()
+        password = graphene.String()
+
+    def mutate(self, info, username, password):
+        user = None
+        userRecord = False
+        try:
+            user = db_session.query(UserModel).filter(UserModel.username == username).filter(UserModel.password == password).one()
+            userRecord = True
+        except:
+            userRecord = False
+        
+        token = secrets.token_hex(24) if userRecord else ''
+
+        return Login(user=user, token=token)
+
 class Mutations(graphene.ObjectType):
     createUser = CreateUser.Field()
+    login = Login.Field()
 
 
 schema = graphene.Schema(query=Query, types=[BlogType, UserType, RoleType], mutation=Mutations)
