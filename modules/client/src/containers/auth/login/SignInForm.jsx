@@ -62,7 +62,11 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     </div>
   )
 /**
- * 
+ * `SignInForm()` function to allow a given user
+ * to login to the web app. using react hooks we 
+ * can change the state of a given user. given a
+ * nested function `handleSubmit()` and allow the
+ * user to login upon click.
  */
 function SignInForm(props) {
     const [ login, setLogin ] = useState(true)
@@ -71,9 +75,11 @@ function SignInForm(props) {
     const saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token)
       }
-    const handleSubmit = () => {
-        let auth_token = ''
-          const result = props.signinMutation({
+    const handleSubmit = async() => {
+        try {
+          // eslint-disable-next-line
+          let auth_token = ''
+          const result = await props.signinMutation({
             variables: {
               username,
               password
@@ -83,8 +89,8 @@ function SignInForm(props) {
           const { token } = result.data.login
           auth_token = token
           saveUserData(token)
-        if (auth_token.length > 0){
-            console.log('ok');
+        } catch (err) {
+          console.error('Error', err);
         }
       }
     // function for handling username change
