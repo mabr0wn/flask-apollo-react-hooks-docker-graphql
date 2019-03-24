@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import About from './About/About.jsx/index.js';
+import About from '../About.jsx';
 
 it('renders without crashing', () => {
     const tree = renderer.create(<About />).toJSON();
