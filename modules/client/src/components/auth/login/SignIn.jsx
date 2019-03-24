@@ -4,7 +4,7 @@ import React from 'react';
 import { Values } from "redux-form-website-template";
 // Local
 import SignInForm from '../../../containers/auth/login/SignInForm.jsx'
-import showResults from '../../../showResults';
+import showResults from '../../../modules/showResults';
 
 function SignIn() {
   return (

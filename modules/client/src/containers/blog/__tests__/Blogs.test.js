@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Blogs from '../containers/blog/Blogs.jsx';
+import Blogs from '../Blogs.jsx';
 
 
 

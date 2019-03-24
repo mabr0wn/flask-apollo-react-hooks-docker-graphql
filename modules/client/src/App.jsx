@@ -7,8 +7,8 @@ import {
 // Redux
 import { Provider } from 'react-redux';
 // Local
-import Routes from '../Routes.jsx';
-import store from '../state/store/store';
+import Routes from './routes/Routes.jsx/index.js';
+import store from './state/store/store';
 
 /*
  * =======================================================

@@ -1,5 +1,5 @@
 import React from 'react'
-import Blogs from '../../containers/blog/Blogs.jsx';
+import Blogs from '../../../containers/blog/Blogs.jsx';
 
 function Home() {
   return (

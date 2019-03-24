@@ -14,10 +14,10 @@ import {
     Switch
 } from 'react-router-dom';
 // Local
-import Home from './components/core/Home.jsx';
-import SignIn from './components/auth/login/SignIn.jsx';
-import SignUp from './components/auth/register/SignUp.jsx';
-import Footer from './components/core/Footer';
+import Home from './components/core/Home/Home.jsx/index.js';
+import SignIn from '../components/auth/login/SignIn.jsx';
+import SignUp from '../components/auth/register/SignUp.jsx';
+import Footer from '../components/core/Footer/Footer';
 
 function Routes() {
   return (
