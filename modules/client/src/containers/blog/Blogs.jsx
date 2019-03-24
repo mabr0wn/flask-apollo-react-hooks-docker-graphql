@@ -2,7 +2,7 @@
 import React from 'react';
 // Apollo
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { GET_USERS_BLOGS } from '../../state/queries';
 // Local
 import '../../styles/blog.css';
 
