@@ -6,28 +6,6 @@ import { GET_USERS_BLOGS } from '../../state/queries';
 // Local
 import '../../styles/blog.css';
 
-const GET_USERS_BLOGS = gql`
-  query {
-  users {
-    edges {
-      node {
-        id,
-        username,
-        email
-        blog {
-          id,
-          title,
-          text
-        },
-        role {
-          id,
-          name
-        }
-      }
-    }
-  }
-}
-`
 const Blogs = () => { 
     return (
       <Query query={GET_USERS_BLOGS}>
