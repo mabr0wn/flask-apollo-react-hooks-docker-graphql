@@ -52,8 +52,7 @@
     "redux": "^4.0.1",
     "redux-form": "^7.4.2",
     "redux-form-website-template": "^0.0.123",
-    "redux-thunk": "^2.3.0",
-    "remarkable": "^1.7.1"
+    "redux-thunk": "^2.3.0"
   },
   "jest": {
     "setupFiles": [
