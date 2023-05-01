@@ -1,4 +1,4 @@
-Flask==1.0.2
+Flask==2.3.2
 Flask-graphql==2.0.0
 Flask-cors==3.0.9
 Flask-RESTful==0.3.6
